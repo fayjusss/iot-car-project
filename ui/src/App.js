@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.css';
+import Dashboard from './Components/Navigation/Dashboard.js';
 
 function App() {
   return (
     <div className="App">
-      <h1>PowerBox project</h1>
+      <Dashboard></Dashboard>
     </div>
   );
 }
