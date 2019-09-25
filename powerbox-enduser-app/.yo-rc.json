@@ -1,0 +1,22 @@
+{
+  "generator-react-firebase": {
+    "promptValues": {
+      "githubUser": "fayjusss",
+      "firebaseName": "oamk-iot-powerbox",
+      "firebaseKey": "AIzaSyD1_87Ptgr-qoogVruLlVvDuuxa5SbXLKE",
+      "includeRedux": true,
+      "includeFirestore": true,
+      "otherFeatures": [
+        "Continuous Integration config",
+        "Firebase Cloud Messaging",
+        "Firebase Functions (with ESNext support)",
+        "Google Analytics (react-ga)",
+        "Client Side Error Reporting (Stackdriver)"
+      ],
+      "messagingSenderId": "474690472807",
+      "firebasePublicVapidKey": "BDpHPnmC1mPTBVcmSL42A-gBmsIdu55aO2rUTBn2tLA7itc1LiHg38_6wmapu-Tfm7wa7Tp5ph-udQuoW8JQcR4",
+      "ciProvider": "travis",
+      "deployTo": "firebase"
+    }
+  }
+}
