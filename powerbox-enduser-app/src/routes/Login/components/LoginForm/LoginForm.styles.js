@@ -1,19 +1,14 @@
 export default theme => ({
-  root: {
-    ...theme.flexColumnCenter,
-    justifyContent: 'flex-start',
-    flexGrow: 1,
-    height: '100%',
-    width: '100%',
-    margin: '.2rem'
+  '@global': {
+    body: {
+      backgroundColor: theme.palette.common.white,
+    },
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
   },
   submit: {
-    ...theme.flexColumnCenter,
-    justifyContent: 'center',
-    flexGrow: 1,
-    textAlign: 'center',
-    padding: '1.25rem',
-    minWidth: '192px',
-    marginTop: '1.5rem'
+    margin: theme.spacing(3, 0, 2),
   }
 })

@@ -1,5 +1,6 @@
 export default theme => ({
   root: {
+    backgroundColor: theme.palette.common.white,
     ...theme.flexColumnCenter,
     justifyContent: 'flex-start',
     height: '100%',
@@ -7,13 +8,20 @@ export default theme => ({
     fontWeight: 400,
     paddingTop: '1.5rem'
   },
+  paper: {
+    marginTop: theme.spacing(9),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
   panel: {
     ...theme.flexColumnCenter,
     justifyContent: 'center',
-    flexGrow: 1,
-    padding: '1.25rem',
-    minWidth: '250px',
-    minHeight: '270px'
+    padding: '1.25rem'
   },
   orLabel: {
     marginTop: '1rem',
@@ -22,14 +30,10 @@ export default theme => ({
   signup: {
     ...theme.flexColumnCenter,
     justifyContent: 'center',
-    marginTop: '2rem'
-  },
-  signupLabel: {
-    fontSize: '1rem',
-    fontWeight: 'bold'
+    marginTop: '1rem'
   },
   signupLink: {
-    fontSize: '1.2rem'
+    fontSize: '1rem'
   },
   providers: {
     marginTop: '1rem'

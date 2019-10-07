@@ -10,10 +10,16 @@ function LoginForm({ pristine, submitting, handleSubmit, classes }) {
     <form className={classes.root} onSubmit={handleSubmit}>
       <Field
         name="email"
+        variant="outlined"
         component={TextField}
         autoComplete="email"
-        label="Email"
+        label="Email Address"
+        id="email"
         validate={[required, validateEmail]}
+        margin="normal"
+        required
+        fullWidth
+        autoFocus
       />
       <Field
         name="password"
@@ -22,12 +28,18 @@ function LoginForm({ pristine, submitting, handleSubmit, classes }) {
         label="Password"
         type="password"
         validate={required}
+        variant="outlined"
+        margin="normal"
+        required
+        fullWidth
+        id="password"
       />
       <div className={classes.submit}>
         <Button
           color="primary"
           type="submit"
           variant="contained"
+          fullWidth
           disabled={pristine || submitting}>
           {submitting ? 'Loading' : 'Login'}
         </Button>
