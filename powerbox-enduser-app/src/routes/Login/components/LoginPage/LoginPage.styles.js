@@ -1,6 +1,5 @@
 export default theme => ({
   root: {
-    backgroundColor: theme.palette.common.white,
     ...theme.flexColumnCenter,
     justifyContent: 'flex-start',
     height: '100%',
@@ -15,8 +14,8 @@ export default theme => ({
     alignItems: 'center',
   },
   avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    margin: theme.spacing(0),
+    backgroundColor: theme.palette.secondary.main
   },
   panel: {
     ...theme.flexColumnCenter,

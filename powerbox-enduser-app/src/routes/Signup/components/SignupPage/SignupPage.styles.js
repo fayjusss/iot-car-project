@@ -5,7 +5,17 @@ export default theme => ({
     height: '100%',
     width: '100%',
     fontWeight: 400,
-    paddingTop: '1.5rem'
+    paddingTop: '4rem'
+  },
+  paper: {
+    marginTop: theme.spacing(10),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
   },
   panel: {
     ...theme.flexColumnCenter,
@@ -29,7 +39,7 @@ export default theme => ({
     fontWeight: 'bold'
   },
   loginLink: {
-    fontSize: '1.2rem'
+    fontSize: '1rem'
   },
   providers: {
     marginTop: '1rem'

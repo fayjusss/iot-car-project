@@ -8,7 +8,7 @@ import LoginForm from '../LoginForm'
 import Container from '@material-ui/core/Container';
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import HowToRegIcon from '@material-ui/icons/HowToReg';
 import Typography from '@material-ui/core/Typography';
 
 function LoginPage({ emailLogin, googleLogin, onSubmitFail, classes }) {
@@ -18,7 +18,7 @@ function LoginPage({ emailLogin, googleLogin, onSubmitFail, classes }) {
     <div className={classes.paper}>
       <Paper className={classes.panel}>
         <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
+          <HowToRegIcon/>
         </Avatar>
         <Typography component="h1" variant="h5">
           Login
