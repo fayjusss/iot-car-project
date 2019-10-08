@@ -43,7 +43,7 @@ function SignupForm({ pristine, submitting, handleSubmit, classes }) {
             required
             fullWidth
             id="email"
-            label="Email Address"
+            label="Email ADdress"
             name="email"
             autoComplete="email"
             component={TextField}
