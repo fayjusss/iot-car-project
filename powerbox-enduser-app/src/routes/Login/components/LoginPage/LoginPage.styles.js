@@ -15,7 +15,7 @@ export default theme => ({
   },
   avatar: {
     margin: theme.spacing(0),
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: theme.palette.primary.main
   },
   panel: {
     ...theme.flexColumnCenter,

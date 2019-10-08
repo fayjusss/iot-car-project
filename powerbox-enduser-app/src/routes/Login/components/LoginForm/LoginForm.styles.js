@@ -12,6 +12,7 @@ export default theme => ({
     marginTop: theme.spacing(1),
   },
   submit: {
+    width: '100%',
     margin: theme.spacing(3, 0, 2),
   }
 })
