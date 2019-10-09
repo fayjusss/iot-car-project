@@ -4,6 +4,7 @@ var mqtt = require('mqtt');
 var BME280 = require('bme280-sensor');
 var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 var ledred = new Gpio(4, 'out');
+var startAutomaticTemp=0;
 
 
 // The BME280 constructor options are optional.
@@ -70,6 +71,7 @@ client.on('error', function (err) {
 client.on('message', function (topic, message, packet) {
   var obj = JSON.parse(Buffer.from(message, 'base64').toString('ascii'));
   trunLightOnOff(obj.startnow);
+  startAutomaticTemp=obj.triggeringTemp;
   //  setTimeout(endBlink, 5000);
   console.log(topic, 'message received: ', Buffer.from(message, 'base64').toString('ascii'));
   console.log('-------------------');
@@ -103,6 +105,12 @@ function readSensorData() {
       // I'll also calculate some unit conversions for display purposes.
 
       var payload = createPayload(data.temperature_C, data.humidity);
+      
+     console.log(data.temperature_C);
+     if (data.temperature_C<startAutomaticTemp)
+     trunLightOnOff(true);
+     
+
       sendData(payload);
       console.log('Transmitting in 15 seconds');
       setTimeout(readSensorData, 15000);
