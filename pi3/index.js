@@ -2,13 +2,8 @@ var fs = require('fs');
 var jwt = require('jsonwebtoken');
 var mqtt = require('mqtt');
 var BME280 = require('bme280-sensor');
-// By Aram
 var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
-//var LED = new Gpio(4, 'out'); //use GPIO pin 4, and specify that it is output
 var ledred = new Gpio(4, 'out');
-var TestLight = false;
-
-// END By Aram
 
 
 // The BME280 constructor options are optional.
@@ -53,11 +48,6 @@ client.on('connect', function (success) {
   if (success) {
     console.log('Client connected...');
     // Initialize the BME280 sensor
-    //
-console.log('reset Led');
-//console.log(LED.readSync());
-ledred.writeSync(1);
-//LED.unexport();
     bme280.init()
       .then(() => {
         console.log('BME280 initialization succeeded');
@@ -78,27 +68,21 @@ client.on('error', function (err) {
 });
 
 client.on('message', function (topic, message, packet) {
-//var str = '{ "name": "John Doe", "age": 42 }';
-//var obj = JSON.parse(str);
-//console.log(obj.name);
-var obj=JSON.parse( Buffer.from(message, 'base64').toString('ascii'));
-console.log(obj.startnow);
-//  if (TestLight) { //check the pin state, if the state is 0 (or off)
-  //  console.log( 'Led is off');
-//TestLight=false;
-  //  LED.writeSync(0); //set pin state to 1 (turn LED on)
-  //} else {
-//TestLight=true;
-  //  LED.writeSync(1); //set pin state to 0 (turn LED off)
-    //console.log( 'Led is ON');
-
-  //}
-console.log('bab jan bror bekhab');
-//  setTimeout(endBlink, 5000);
+  var obj = JSON.parse(Buffer.from(message, 'base64').toString('ascii'));
+  trunLightOnOff(obj.startnow);
+  //  setTimeout(endBlink, 5000);
   console.log(topic, 'message received: ', Buffer.from(message, 'base64').toString('ascii'));
-console.log('-------------------');
+  console.log('-------------------');
 });
+function trunLightOnOff(stateValue){
+  if (stateValue){
+    ledred.writeSync(1);
+  }
+  else {
+    ledred.writeSync(0);
 
+  }
+}
 
 function createJwt(projectId, privateKeyFile, algorithm) {
   var token = {
