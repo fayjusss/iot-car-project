@@ -70,21 +70,31 @@ client.on('error', function (err) {
 
 client.on('message', function (topic, message, packet) {
   var obj = JSON.parse(Buffer.from(message, 'base64').toString('ascii'));
-  trunLightOnOff(obj.startnow);
+  
+  if (obj.startnow) {
+    trunLightOn(obj.startnow);
+  }
+  if (!obj.startnow && obj.stopnow){
+    trunLightOff(obj.stopnow);
+  }
   startAutomaticTemp=obj.triggeringTemp;
   //  setTimeout(endBlink, 5000);
   console.log(topic, 'message received: ', Buffer.from(message, 'base64').toString('ascii'));
   console.log('-------------------');
 });
-function trunLightOnOff(stateValue){
+function trunLightOn(stateValue){
   if (stateValue){
+
     ledred.writeSync(1);
   }
-  else {
-    ledred.writeSync(0);
+}
+function trunLightOff(stateValue){
+  if (stateValue){
 
+    ledred.writeSync(0);
   }
 }
+
 
 function createJwt(projectId, privateKeyFile, algorithm) {
   var token = {
@@ -108,7 +118,9 @@ function readSensorData() {
       
      console.log(data.temperature_C);
      if (data.temperature_C<startAutomaticTemp)
-     trunLightOnOff(true);
+     {
+       trunLightOnOff(true);
+     }
      
 
       sendData(payload);
