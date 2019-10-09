@@ -1,5 +1,5 @@
 # Ignore Certificates
-certs/
+pi3/certs/
 
 # Logs
 logs
