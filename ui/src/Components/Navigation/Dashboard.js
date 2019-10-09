@@ -18,7 +18,6 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
 
-import './Navigation.css';
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
-import { LIST_PATH } from 'constants/paths'
+import { DASHBOARD_PATH } from 'constants/paths'
 import AccountMenu from './AccountMenu'
 import LoginMenu from './LoginMenu'
 
@@ -27,7 +27,7 @@ function Navbar({
           color="inherit"
           className={classes.flex}
           component={Link}
-          to={authExists ? LIST_PATH : '/'}>
+          to={authExists ? DASHBOARD_PATH : '/'}>
           powerbox-enduser-app
         </Typography>
         {authExists ? (
