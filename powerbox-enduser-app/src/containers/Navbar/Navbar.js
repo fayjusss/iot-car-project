@@ -28,7 +28,7 @@ function Navbar({
           className={classes.flex}
           component={Link}
           to={authExists ? DASHBOARD_PATH : '/'}>
-          powerbox-enduser-app
+          Powerbox
         </Typography>
         {authExists ? (
           <AccountMenu
