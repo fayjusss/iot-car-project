@@ -4,22 +4,10 @@ var mqtt = require('mqtt');
 var BME280 = require('bme280-sensor');
 // By Aram
 var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
-var LED = new Gpio(4, 'out'); //use GPIO pin 4, and specify that it is output
-var blinkInterval = setInterval(blinkLED, 250); //run the blinkLED function every 250ms
+//var LED = new Gpio(4, 'out'); //use GPIO pin 4, and specify that it is output
+var ledred = new Gpio(4, 'out');
+var TestLight = false;
 
-function blinkLED() { //function to start blinking
-  if (LED.readSync() === 0) { //check the pin state, if the state is 0 (or off)
-    LED.writeSync(1); //set pin state to 1 (turn LED on)
-  } else {
-    LED.writeSync(0); //set pin state to 0 (turn LED off)
-  }
-}
-
-function endBlink() { //function to stop blinking
-  clearInterval(blinkInterval); // Stop blink intervals
-  LED.writeSync(0); // Turn LED off
-  LED.unexport(); // Unexport GPIO to free resources
-}
 // END By Aram
 
 
@@ -66,6 +54,10 @@ client.on('connect', function (success) {
     console.log('Client connected...');
     // Initialize the BME280 sensor
     //
+console.log('reset Led');
+//console.log(LED.readSync());
+ledred.writeSync(1);
+//LED.unexport();
     bme280.init()
       .then(() => {
         console.log('BME280 initialization succeeded');
@@ -86,19 +78,25 @@ client.on('error', function (err) {
 });
 
 client.on('message', function (topic, message, packet) {
-  if (LED.readSync() === 0) { //check the pin state, if the state is 0 (or off)
-    console.log(topic, 'Led is off');
+//var str = '{ "name": "John Doe", "age": 42 }';
+//var obj = JSON.parse(str);
+//console.log(obj.name);
+var obj=JSON.parse( Buffer.from(message, 'base64').toString('ascii'));
+console.log(obj.startnow);
+//  if (TestLight) { //check the pin state, if the state is 0 (or off)
+  //  console.log( 'Led is off');
+//TestLight=false;
+  //  LED.writeSync(0); //set pin state to 1 (turn LED on)
+  //} else {
+//TestLight=true;
+  //  LED.writeSync(1); //set pin state to 0 (turn LED off)
+    //console.log( 'Led is ON');
 
-    LED.writeSync(1); //set pin state to 1 (turn LED on)
-  } else {
-
-    LED.writeSync(0); //set pin state to 0 (turn LED off)
-    console.log(topic, 'Led is ON');
-
-  }
-
+  //}
+console.log('bab jan bror bekhab');
 //  setTimeout(endBlink, 5000);
   console.log(topic, 'message received: ', Buffer.from(message, 'base64').toString('ascii'));
+console.log('-------------------');
 });
 
 
