@@ -5,6 +5,7 @@ import Home from './Home'
 import LoginRoute from './Login'
 import SignupRoute from './Signup'
 import DashboardRoute from './Dashboard'
+import DevicesRoute from './Devices'
 import AccountRoute from './Account'
 import NotFoundRoute from './NotFound'
 
@@ -17,6 +18,7 @@ export default function createRoutes(store) {
         [
           AccountRoute,
           DashboardRoute,
+          DevicesRoute,
           SignupRoute,
           LoginRoute
           /* Add More Routes Here */
