@@ -99,3 +99,6 @@ public
 
 # DynamoDB Local files
 .dynamodb/
+client_test/.DS_Store
+
+.DS_Store
