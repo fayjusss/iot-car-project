@@ -119,7 +119,7 @@ function readSensorData() {
      console.log(data.temperature_C);
      if (data.temperature_C<startAutomaticTemp)
      {
-       trunLightOnOff(true);
+      trunLightOn(true);
      }
      
 
