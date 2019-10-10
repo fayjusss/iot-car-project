@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Grid } from '@material-ui/core'
-import Budget from '../DashboardPage/DashboardComponents/Budget'
+import Weather from '../DashboardPage/DashboardComponents/Weather'
 import TotalProfit from '../DashboardPage/DashboardComponents/TotalProfit'
 import TotalUsers from '../DashboardPage/DashboardComponents/TotalUsers'
 import TaskProgress from '../DashboardPage/DashboardComponents/TaskProgress'
@@ -11,7 +11,7 @@ function DashboardPage({ dashboard, classes }) {
     <div className={classes.root}>
       <Grid container spacing={4}>
         <Grid item lg={3} sm={6} xl={3} xs={12}>
-          <Budget />
+          <Weather />
         </Grid>
         <Grid item lg={3} sm={6} xl={3} xs={12}>
           <TotalUsers />

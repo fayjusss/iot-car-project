@@ -30,11 +30,9 @@ export default compose(
     handleLogout: props => () => {
       props.firebase.logout()
       props.history.push('/')
-      props.closeAccountMenu()
     },
     goToAccount: props => () => {
       props.history.push(ACCOUNT_PATH)
-      props.closeAccountMenu()
     }
   }),
   // Add custom props

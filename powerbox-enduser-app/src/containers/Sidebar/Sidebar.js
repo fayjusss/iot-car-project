@@ -1,35 +1,35 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import clsx from 'clsx';
-import { Divider, Drawer } from '@material-ui/core';
-import BarChartIcon from '@material-ui/icons/BarChart';
-import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import EvStationIcon from '@material-ui/icons/EvStation';
-import { User, Nav} from './components';
+import React from "react";
+import PropTypes from "prop-types";
+import clsx from "clsx";
+import { Divider, Drawer } from "@material-ui/core";
+import BarChartIcon from "@material-ui/icons/BarChart";
+import AccountBoxIcon from "@material-ui/icons/AccountBox";
+import EvStationIcon from "@material-ui/icons/EvStation";
+import { User, Nav } from "./components";
 
 function Sidebar({
   classes,
   open,
   profile,
-  variant, 
-  onClose, 
-  className, 
+  variant,
+  onClose,
+  className,
   ...rest
 }) {
   const pages = [
     {
-      title: 'Dashboard',
-      href: '/dashboard',
+      title: "Dashboard",
+      href: "/dashboard",
       icon: <BarChartIcon />
     },
     {
-      title: 'Powerboxes',
-      href: '/powerboxes',
+      title: "Powerboxes",
+      href: "/powerboxes",
       icon: <EvStationIcon />
     },
     {
-      title: 'Account',
-      href: '/account',
+      title: "Account",
+      href: "/account",
       icon: <AccountBoxIcon />
     }
   ];
@@ -42,18 +42,13 @@ function Sidebar({
       open={open}
       variant={variant}
     >
-      <div
-        className={clsx(classes.root, className)}
-      >
-        <User profile={profile}/>
+      <div className={clsx(classes.root, className)}>
+        <User profile={profile} />
         <Divider className={classes.divider} />
-        <Nav
-          className={classes.nav}
-          pages={pages}
-        />
+        <Nav className={classes.nav} pages={pages} />
       </div>
     </Drawer>
-  )
+  );
 }
 
 Sidebar.propTypes = {
@@ -63,13 +58,12 @@ Sidebar.propTypes = {
   authExists: PropTypes.bool, // from enhancer (withProps - auth)
   goToAccount: PropTypes.func.isRequired, // from enhancer (withHandlers - router)
   handleLogout: PropTypes.func.isRequired, // from enhancer (withHandlers - firebase)
-  closeAccountMenu: PropTypes.func.isRequired, // from enhancer (withHandlers - firebase)
   handleMenu: PropTypes.func.isRequired, // from enhancer (withHandlers - firebase)
   anchorEl: PropTypes.object, // from enhancer (withStateHandlers - handleMenu)
   className: PropTypes.string,
   onClose: PropTypes.func,
   open: PropTypes.bool.isRequired,
   variant: PropTypes.string.isRequired
-}
+};
 
-export default Sidebar
+export default Sidebar;
