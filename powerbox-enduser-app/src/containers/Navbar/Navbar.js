@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import clsx from "clsx";
 import { Link } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import { DASHBOARD_PATH } from "constants/paths";
@@ -23,7 +22,7 @@ function Navbar({
   ...rest
 }) {
   return (
-    <AppBar {...rest} className={clsx(classes.root, className)}>
+    <AppBar {...rest} className={(classes.root, className)}>
       <Toolbar>
         <Avatar className={classes.avatar}>
           <BatteryChargingFullIcon />
