@@ -15,7 +15,7 @@ export default compose(
   setDisplayName('EnhancedPowerboxesPage'),
   // redirect to /login if user is not logged in
   UserIsAuthenticated,
-  // create listener for devices, results go into redux
+  // create listener for powerboxes, results go into redux
   firestoreConnect([{ collection: 'powerboxes' }]),
   // map redux state to props
   connect(({ firestore: { ordered } }) => ({

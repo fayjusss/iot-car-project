@@ -4,12 +4,13 @@ import clsx from 'clsx';
 import { Divider, Drawer } from '@material-ui/core';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import DevicesIcon from '@material-ui/icons/Devices';
+import EvStationIcon from '@material-ui/icons/EvStation';
 import { User, Nav} from './components';
 
 function Sidebar({
   classes,
   open,
+  profile,
   variant, 
   onClose, 
   className, 
@@ -22,9 +23,9 @@ function Sidebar({
       icon: <BarChartIcon />
     },
     {
-      title: 'Devices',
-      href: '/settings',
-      icon: <DevicesIcon />
+      title: 'Powerboxes',
+      href: '/powerboxes',
+      icon: <EvStationIcon />
     },
     {
       title: 'Account',
@@ -44,7 +45,7 @@ function Sidebar({
       <div
         className={clsx(classes.root, className)}
       >
-        <User />
+        <User profile={profile}/>
         <Divider className={classes.divider} />
         <Nav
           className={classes.nav}

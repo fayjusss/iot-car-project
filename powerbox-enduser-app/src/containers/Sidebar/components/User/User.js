@@ -21,14 +21,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Profile = props => {
-  const { avatarUrl, className, ...rest } = props;
+  const { profile, className, ...rest } = props;
 
   const classes = useStyles();
-
-  const user = {
-    name: 'Elon Musk',
-  };
-
+  
   return (
     <div
       {...rest}
@@ -37,13 +33,13 @@ const Profile = props => {
       <Avatar
         alt="Person"
         className={classes.avatar}
-        src={avatarUrl || defaultUserImageUrl}
+        src={profile.avatarUrl || defaultUserImageUrl}
       />
       <Typography
         className={classes.name}
         variant="subtitle1"
       >
-        {user.name}
+        {profile.displayName}
       </Typography>
     </div>
   );
