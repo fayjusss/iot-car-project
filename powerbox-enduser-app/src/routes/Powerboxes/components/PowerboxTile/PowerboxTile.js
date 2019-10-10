@@ -1,16 +1,42 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Paper from '@material-ui/core/Paper'
+import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core'
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
+import MoneyIcon from '@material-ui/icons/Money'
 
 function PowerboxTile({ name, onSelect, classes }) {
   return (
-    <Paper className={classes.root}>
-      <div className={classes.top}>
-        <span className={classes.name} onClick={onSelect}>
-          {name || 'No Name'}
-        </span>
-      </div>
-    </Paper>
+    <Card className={classes.root}>
+      <CardContent>
+        <Grid container justify="space-between">
+          <Grid item>
+            <Typography
+              className={classes.title}
+              onClick={onSelect}
+              color="textSecondary"
+              gutterBottom
+              variant="body2">
+              {name}
+            </Typography>
+            <Typography variant="h5">001</Typography>
+          </Grid>
+          <Grid item>
+            <Avatar className={classes.avatar}>
+              <MoneyIcon className={classes.icon} />
+            </Avatar>
+          </Grid>
+        </Grid>
+        <div className={classes.difference}>
+          <ArrowDownwardIcon className={classes.differenceIcon} />
+          <Typography className={classes.differenceValue} variant="body2">
+            12%
+          </Typography>
+          <Typography className={classes.caption} variant="caption">
+            Since last month
+          </Typography>
+        </div>
+      </CardContent>
+    </Card>
   )
 }
 

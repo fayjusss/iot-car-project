@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { isEmpty } from 'react-redux-firebase/lib/helpers'
 import { Route, Switch } from 'react-router-dom'
+import { Grid } from '@material-ui/core'
 import PowerboxRoute from 'routes/Powerboxes/routes/Powerbox'
 import PowerboxTile from '../PowerboxTile'
 import { renderChildren } from 'utils/router'
@@ -17,16 +18,19 @@ function PowerboxesPage({ powerboxes, classes, match, goToPowerbox }) {
         path={match.path}
         render={() => (
           <div className={classes.root}>
-            <div className={classes.tiles}>
-              {!isEmpty(powerboxes) &&
-                powerboxes.map((powerbox, ind) => (
-                  <PowerboxTile
-                    key={`Powerbox-${powerbox.id}-${ind}`}
-                    name={powerbox.name}
-                    onSelect={() => goToPowerbox(powerbox.id)}
-                  />
+            {!isEmpty(powerboxes) && (
+              <Grid container spacing={4}>
+                {powerboxes.map((powerbox, ind) => (
+                  <Grid item lg={3} sm={6} xl={3} xs={12}>
+                    <PowerboxTile
+                      key={`Powerbox-${powerbox.id}-${ind}`}
+                      name={powerbox.name}
+                      onSelect={() => goToPowerbox(powerbox.id)}
+                    />
+                  </Grid>
                 ))}
-            </div>
+              </Grid>
+            )}
           </div>
         )}
       />

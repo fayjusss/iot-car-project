@@ -1,13 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import clsx from "clsx";
-import { Link } from "react-router-dom";
-import Typography from "@material-ui/core/Typography";
-import { DASHBOARD_PATH } from "constants/paths";
-import { AppBar, Toolbar, Hidden, IconButton } from "@material-ui/core";
-import BatteryChargingFullIcon from "@material-ui/icons/BatteryChargingFull";
-import Avatar from "@material-ui/core/Avatar";
-import MenuIcon from "@material-ui/icons/Menu";
+import React from 'react'
+import PropTypes from 'prop-types'
+import clsx from 'clsx'
+import { Link } from 'react-router-dom'
+import Typography from '@material-ui/core/Typography'
+import { DASHBOARD_PATH } from 'constants/paths'
+import { AppBar, Toolbar, Hidden, IconButton } from '@material-ui/core'
+import BatteryChargingFullIcon from '@material-ui/icons/BatteryChargingFull'
+import Avatar from '@material-ui/core/Avatar'
+import MenuIcon from '@material-ui/icons/Menu'
 
 function Navbar({
   avatarUrl,
@@ -16,7 +16,6 @@ function Navbar({
   goToAccount,
   handleLogout,
   anchorEl,
-  handleMenu,
   className,
   onSidebarOpen,
   classes,
@@ -33,8 +32,7 @@ function Navbar({
           color="inherit"
           className={classes.flex}
           component={Link}
-          to={authExists ? DASHBOARD_PATH : "/"}
-        >
+          to={authExists ? DASHBOARD_PATH : '/'}>
           Powerbox
         </Typography>
         <div className={classes.flexGrow} />
@@ -52,7 +50,7 @@ function Navbar({
         </Hidden>
       </Toolbar>
     </AppBar>
-  );
+  )
 }
 
 Navbar.propTypes = {
@@ -62,9 +60,7 @@ Navbar.propTypes = {
   avatarUrl: PropTypes.string, // from enhancer (flattenProps - profile)
   authExists: PropTypes.bool, // from enhancer (withProps - auth)
   goToAccount: PropTypes.func.isRequired, // from enhancer (withHandlers - router)
-  handleLogout: PropTypes.func.isRequired, // from enhancer (withHandlers - firebase)
-  handleMenu: PropTypes.func.isRequired, // from enhancer (withHandlers - firebase)
-  anchorEl: PropTypes.object // from enhancer (withStateHandlers - handleMenu)
-};
+  handleLogout: PropTypes.func.isRequired // from enhancer (withHandlers - firebase)
+}
 
-export default Navbar;
+export default Navbar

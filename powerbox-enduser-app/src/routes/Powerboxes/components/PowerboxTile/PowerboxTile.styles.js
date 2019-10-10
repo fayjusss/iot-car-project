@@ -1,31 +1,33 @@
 export default theme => ({
   root: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    height: '200px',
-    width: '300px',
-    margin: theme.spacing(0.5),
-    padding: theme.spacing(1.3)
+    height: '100%'
   },
-  top: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    width: '100%'
+  content: {
+    alignItems: 'center',
+    display: 'flex'
   },
-  name: {
-    fontSize: '1.5rem',
-    cursor: 'pointer',
-    textDecoration: 'none',
-    transition: 'all 800ms cubic-bezier(0.25,0.1,0.25,1) 0ms',
-    textOverflow: 'ellipsis',
-    overflow: 'hidden',
-    whiteSpace: 'nowrap',
-    ':hover': {
-      color: ''
-    },
-    ':visited': {
-      textDecoration: 'none'
-    }
+  title: {
+    fontWeight: 70
+  },
+  avatar: {
+    backgroundColor: theme.palette.primary.main,
+    height: 56,
+    width: 56
+  },
+  icon: {
+    height: 32,
+    width: 32
+  },
+  difference: {
+    marginTop: theme.spacing(2),
+    display: 'flex',
+    alignItems: 'center'
+  },
+  differenceIcon: {
+    color: theme.palette.primary.main
+  },
+  differenceValue: {
+    color: theme.palette.primary.main,
+    marginRight: theme.spacing(1)
   }
 })
