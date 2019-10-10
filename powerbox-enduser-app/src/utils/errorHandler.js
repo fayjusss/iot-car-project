@@ -1,7 +1,7 @@
 import { firebase, env as environment } from '../config'
 import { version } from '../../package.json'
 
-let errorHandler; // eslint-disable-line import/no-mutable-exports
+let errorHandler // eslint-disable-line import/no-mutable-exports
 
 /**
  * Initialize Stackdriver Error Reporter only if api key exists
