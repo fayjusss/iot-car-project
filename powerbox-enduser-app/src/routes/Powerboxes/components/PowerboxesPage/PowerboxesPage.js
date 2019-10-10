@@ -21,9 +21,14 @@ function PowerboxesPage({ powerboxes, classes, match, goToPowerbox }) {
             {!isEmpty(powerboxes) && (
               <Grid container spacing={4}>
                 {powerboxes.map((powerbox, ind) => (
-                  <Grid item lg={3} sm={6} xl={3} xs={12}>
+                  <Grid
+                    item
+                    lg={3}
+                    sm={6}
+                    xl={3}
+                    xs={12}
+                    key={`Powerbox-${powerbox.id}-${ind}`}>
                     <PowerboxTile
-                      key={`Powerbox-${powerbox.id}-${ind}`}
                       name={powerbox.name}
                       onSelect={() => goToPowerbox(powerbox.id)}
                     />
