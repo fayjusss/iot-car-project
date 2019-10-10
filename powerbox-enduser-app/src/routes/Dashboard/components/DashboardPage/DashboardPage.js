@@ -1,57 +1,29 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Grid } from '@material-ui/core';
-import Budget from '../DashboardPage/DashboardComponents/Budget';
-import TotalProfit from '../DashboardPage/DashboardComponents/TotalProfit';
-import TotalUsers from '../DashboardPage/DashboardComponents/TotalUsers';
-import TaskProgress from '../DashboardPage/DashboardComponents/TaskProgress';
-
+import { Grid } from '@material-ui/core'
+import Budget from '../DashboardPage/DashboardComponents/Budget'
+import TotalProfit from '../DashboardPage/DashboardComponents/TotalProfit'
+import TotalUsers from '../DashboardPage/DashboardComponents/TotalUsers'
+import TaskProgress from '../DashboardPage/DashboardComponents/TaskProgress'
 
 function DashboardPage({ dashboard, classes }) {
   return (
     <div className={classes.root}>
-      <Grid
-        container
-        spacing={4}
-       >
-      <Grid
-        item
-        lg={3}
-        sm={6}
-        xl={3}
-        xs={12}
-      >
-        <Budget />
+      <Grid container spacing={4}>
+        <Grid item lg={3} sm={6} xl={3} xs={12}>
+          <Budget />
+        </Grid>
+        <Grid item lg={3} sm={6} xl={3} xs={12}>
+          <TotalUsers />
+        </Grid>
+        <Grid item lg={3} sm={6} xl={3} xs={12}>
+          <TaskProgress />
+        </Grid>
+        <Grid item lg={3} sm={6} xl={3} xs={12}>
+          <TotalProfit />
+        </Grid>
       </Grid>
-      <Grid
-        item
-        lg={3}
-        sm={6}
-        xl={3}
-        xs={12}
-      >
-        <TotalUsers />
-      </Grid>
-      <Grid
-        item
-        lg={3}
-        sm={6}
-        xl={3}
-        xs={12}
-      >
-        <TaskProgress />
-      </Grid>
-      <Grid
-        item
-        lg={3}
-        sm={6}
-        xl={3}
-        xs={12}
-      >
-        <TotalProfit />
-      </Grid>
-    </Grid>
-  </div>
+    </div>
   )
 }
 
