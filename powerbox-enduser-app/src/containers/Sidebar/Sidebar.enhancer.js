@@ -4,7 +4,6 @@ import {
   compose,
   withProps,
   flattenProp,
-  withStateHandlers,
   setDisplayName
 } from 'recompose'
 import { withStyles } from '@material-ui/core/styles'
@@ -22,21 +21,6 @@ export default compose(
     auth,
     profile
   })),
-  // State handlers as props
-  withStateHandlers(
-    ({ accountMenuOpenInitially = false }) => ({
-      accountMenuOpen: accountMenuOpenInitially,
-      anchorEl: null
-    }),
-    {
-      closeAccountMenu: () => () => ({
-        anchorEl: null
-      }),
-      handleMenu: () => event => ({
-        anchorEl: event.target
-      })
-    }
-  ),
   // Add props.router (used in handlers)
   withRouter,
   // Add props.firebase (used in handlers)

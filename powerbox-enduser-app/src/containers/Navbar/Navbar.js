@@ -4,8 +4,6 @@ import clsx from 'clsx';
 import { Link } from 'react-router-dom'
 import Typography from '@material-ui/core/Typography'
 import { DASHBOARD_PATH } from 'constants/paths'
-import AccountMenu from './AccountMenu'
-import LoginMenu from './LoginMenu'
 import { AppBar, Toolbar, Hidden, IconButton } from '@material-ui/core';
 import BatteryChargingFullIcon from '@material-ui/icons/BatteryChargingFull';
 import Avatar from '@material-ui/core/Avatar';
@@ -18,7 +16,6 @@ function Navbar({
   authExists,
   goToAccount,
   handleLogout,
-  closeAccountMenu,
   anchorEl,
   handleMenu,
   className,
@@ -45,19 +42,6 @@ function Navbar({
         </Typography>
         <div className={classes.flexGrow} />
         <Hidden mdDown>
-          {authExists ? (
-            <AccountMenu
-              avatarUrl={avatarUrl}
-              displayName={displayName}
-              onLogoutClick={handleLogout}
-              goToAccount={goToAccount}
-              closeAccountMenu={closeAccountMenu}
-              handleMenu={handleMenu}
-              anchorEl={anchorEl}
-            />
-          ) : (
-            <LoginMenu />
-          )} 
           <Hidden lgUp>
             <IconButton
               color="inherit"
