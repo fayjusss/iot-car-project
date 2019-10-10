@@ -23,13 +23,16 @@ function PowerboxesPage({ powerboxes, classes, match, goToPowerbox }) {
                 {powerboxes.map((powerbox, ind) => (
                   <Grid
                     item
-                    lg={3}
+                    lg={4}
                     sm={6}
                     xl={3}
                     xs={12}
                     key={`Powerbox-${powerbox.id}-${ind}`}>
                     <PowerboxTile
                       name={powerbox.name}
+                      location={powerbox.location}
+                      id={powerbox.id}
+                      status={powerbox.status}
                       onSelect={() => goToPowerbox(powerbox.id)}
                     />
                   </Grid>

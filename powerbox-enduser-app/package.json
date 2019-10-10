@@ -37,6 +37,7 @@
     "history": "^4.9.0",
     "kelvin-to-celsius": "^1.1.0",
     "lodash": "^4.17.15",
+    "numeral": "^2.0.6",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-chartist": "^0.13.3",

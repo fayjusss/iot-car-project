@@ -1,3 +1,5 @@
+import { colors } from '@material-ui/core'
+
 export default theme => ({
   root: {
     height: '100%'
@@ -17,6 +19,15 @@ export default theme => ({
   icon: {
     height: 32,
     width: 32
+  },
+  free: {
+    color: colors.green[600]
+  },
+  reserved: {
+    color: theme.palette.error.main
+  },
+  inactive: {
+    color: colors.grey[600]
   },
   difference: {
     marginTop: theme.spacing(2),
