@@ -3,8 +3,6 @@ import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/styles'
 import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core'
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
-import MoneyIcon from '@material-ui/icons/Money'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -18,7 +16,7 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 70
   },
   avatar: {
-    backgroundColor: theme.palette.error.main,
+    backgroundColor: '#99ccff',
     height: 56,
     width: 56
   },
@@ -59,6 +57,8 @@ const Weather = props => {
     getWeather()
   }, [])
 
+  const kelvinToCelsius = require('kelvin-to-celsius')
+
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
       <CardContent>
@@ -68,27 +68,33 @@ const Weather = props => {
               className={classes.title}
               color="textSecondary"
               gutterBottom
-              variant="body2">
-              Oulu, Finland
+              variant="subtitle1">
+              OULU, FINLAND
             </Typography>
             {weatherData.main && (
-              <Typography variant="h5">{weatherData.main.temp}</Typography>
+              <Typography variant="h6">
+                {kelvinToCelsius(weatherData.main.temp)}
+                {'\u00b0C'}
+              </Typography>
             )}
           </Grid>
           <Grid item>
-            <Avatar className={classes.avatar}>
-              <MoneyIcon className={classes.icon} />
-            </Avatar>
+            {weatherData.main && (
+              <Avatar className={classes.avatar}>
+                <img
+                  alt=""
+                  src={`http://openweathermap.org/img/w/${weatherData.weather[0].icon}.png`}
+                />
+              </Avatar>
+            )}
           </Grid>
         </Grid>
         <div className={classes.difference}>
-          <ArrowDownwardIcon className={classes.differenceIcon} />
-          <Typography className={classes.differenceValue} variant="body2">
-            12%
-          </Typography>
-          <Typography className={classes.caption} variant="caption">
-            Since last month
-          </Typography>
+          {weatherData.main && (
+            <Typography className={classes.caption} variant="caption">
+              Current weather: {weatherData.weather[0].main}
+            </Typography>
+          )}
         </div>
       </CardContent>
     </Card>

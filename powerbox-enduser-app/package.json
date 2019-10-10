@@ -34,6 +34,7 @@
     "chartist": "^0.11.4",
     "firebase": "^6.6.0",
     "history": "^4.9.0",
+    "kelvin-to-celsius": "^1.1.0",
     "lodash": "^4.17.15",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
