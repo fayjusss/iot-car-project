@@ -38,7 +38,6 @@ function CoreLayout({ children, classes }) {
             open={shouldOpenSidebar}
             variant={isDesktop ? 'persistent' : 'temporary'}
           ></Sidebar>
-          <h1>hello</h1>
       </div>
       <div className={classes.children}>{children}</div>
       <Notifications />
