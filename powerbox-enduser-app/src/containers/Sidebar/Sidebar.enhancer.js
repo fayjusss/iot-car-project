@@ -16,7 +16,7 @@ import styles from './Sidebar.styles'
 
 export default compose(
   // Set component display name (more clear in dev/error tools)
-  setDisplayName('EnhancedNavbar'),
+  setDisplayName('EnhancedSidebar'),
   // Map redux state to props
   connect(({ firebase: { auth, profile } }) => ({
     auth,
