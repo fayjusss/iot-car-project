@@ -1,12 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import Typography from "@material-ui/core/Typography";
-import { DASHBOARD_PATH } from "constants/paths";
-import { AppBar, Toolbar, Hidden, IconButton } from "@material-ui/core";
-import BatteryChargingFullIcon from "@material-ui/icons/BatteryChargingFull";
-import Avatar from "@material-ui/core/Avatar";
-import MenuIcon from "@material-ui/icons/Menu";
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
+import Typography from '@material-ui/core/Typography'
+import { DASHBOARD_PATH } from 'constants/paths'
+import { AppBar, Toolbar, Hidden, IconButton } from '@material-ui/core'
+import BatteryChargingFullIcon from '@material-ui/icons/BatteryChargingFull'
+import Avatar from '@material-ui/core/Avatar'
+import MenuIcon from '@material-ui/icons/Menu'
 
 function Navbar({
   avatarUrl,

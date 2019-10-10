@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/styles'
 import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core'
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
+import PeopleIcon from '@material-ui/icons/PeopleOutlined'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -16,7 +18,7 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 70
   },
   avatar: {
-    backgroundColor: '#99ccff',
+    backgroundColor: theme.palette.primary.main,
     height: 56,
     width: 56
   },
@@ -30,35 +32,36 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center'
   },
   differenceIcon: {
-    color: theme.palette.error.dark
+    color: theme.palette.primary.main
   },
   differenceValue: {
-    color: theme.palette.error.dark,
+    color: theme.palette.primary.main,
     marginRight: theme.spacing(1)
   }
 }))
 
-const Weather = props => {
+const Forecast = props => {
   const { className, ...rest } = props
-  const [weatherData, setWeatherData] = useState({})
+  // eslint-disable-next-line no-unused-vars
+  const [forecastData, setForecastData] = useState({})
   const classes = useStyles()
 
-  //Get weather data from open weather API
-
-  const getWeather = async () => {
+  // GET WEATHER FORECAST FROM API
+  const getForecast = async () => {
     const api_call = await fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=oulu,fi&appid=c6cd43a6dc304bb188851d339a3daf48`
+      `api.openweathermap.org/data/2.5/forecast?q=oulu,fi&APPID=c6cd43a6dc304bb188851d339a3daf48`
     )
-    const response = await api_call.json()
-    setWeatherData(response)
+    const res = await api_call.json()
+    setForecastData(res)
     // eslint-disable-next-line no-console
-    console.log(response)
+    console.log(res)
   }
 
   useEffect(() => {
-    getWeather()
+    getForecast()
   }, [])
 
+  // eslint-disable-next-line no-unused-vars
   const kelvinToCelsius = require('kelvin-to-celsius')
 
   return (
@@ -70,41 +73,33 @@ const Weather = props => {
               className={classes.title}
               color="textSecondary"
               gutterBottom
-              variant="subtitle1">
-              OULU, FINLAND
+              variant="body2">
+              TOMORROW:
             </Typography>
-            {weatherData.main && (
-              <Typography variant="h6">
-                {kelvinToCelsius(weatherData.main.temp)}
-                {'\u00b0C'}
-              </Typography>
-            )}
+            <Typography variant="h5"></Typography>
           </Grid>
           <Grid item>
-            {weatherData.main && (
-              <Avatar className={classes.avatar}>
-                <img
-                  alt=""
-                  src={`http://openweathermap.org/img/w/${weatherData.weather[0].icon}.png`}
-                />
-              </Avatar>
-            )}
+            <Avatar className={classes.avatar}>
+              <PeopleIcon className={classes.icon} />
+            </Avatar>
           </Grid>
         </Grid>
         <div className={classes.difference}>
-          {weatherData.main && (
-            <Typography className={classes.caption} variant="caption">
-              Current weather: {weatherData.weather[0].main}
-            </Typography>
-          )}
+          <ArrowUpwardIcon className={classes.differenceIcon} />
+          <Typography className={classes.differenceValue} variant="body2">
+            16%
+          </Typography>
+          <Typography className={classes.caption} variant="caption">
+            Since last month
+          </Typography>
         </div>
       </CardContent>
     </Card>
   )
 }
 
-Weather.propTypes = {
+Forecast.propTypes = {
   className: PropTypes.string
 }
 
-export default Weather
+export default Forecast

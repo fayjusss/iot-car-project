@@ -1,4 +1,5 @@
-export { default as Weather } from '../Components/Weather';
-export { default as TasksProgress } from '../Components/TasksProgress';
-export { default as TotalProfit } from '../Components/TotalProfit';
-export { default as TotalUsers } from '../Components/TotalUsers';
+export { default as Weather } from '../DashboardComponents/Weather'
+export { default as TasksProgress } from '../DashboardComponents/TaskProgress'
+export { default as TotalProfit } from '../DashboardComponents/TotalProfit'
+export { default as Forecast } from '../DashboardComponents/Forecast'
+export { default as Graph } from '../DashboardComponents/Graph'
