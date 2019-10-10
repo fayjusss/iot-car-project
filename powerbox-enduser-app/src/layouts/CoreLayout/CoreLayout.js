@@ -26,7 +26,6 @@ function CoreLayout({ children, classes }) {
   const shouldOpenSidebar = isDesktop ? true : openSidebar;
 
   return (
-    
     <div className={classes.container}>
       <div className={clsx({
         [classes.root]: true,
@@ -38,9 +37,9 @@ function CoreLayout({ children, classes }) {
             open={shouldOpenSidebar}
             variant={isDesktop ? 'persistent' : 'temporary'}
           ></Sidebar>
+          <div className={classes.children}>{children}</div>
+          <Notifications />
       </div>
-      <div className={classes.children}>{children}</div>
-      <Notifications />
     </div>
   )
 }
