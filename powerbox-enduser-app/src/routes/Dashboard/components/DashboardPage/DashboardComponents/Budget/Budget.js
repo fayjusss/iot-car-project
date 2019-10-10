@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex'
   },
   title: {
-    fontWeight: 700
+    fontWeight: 70
   },
   avatar: {
     backgroundColor: theme.palette.error.main,
@@ -64,7 +64,7 @@ const Budget = props => {
             >
               BUDGET
             </Typography>
-            <Typography variant="h3">$24,000</Typography>
+            <Typography variant="h5">$24,000</Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
