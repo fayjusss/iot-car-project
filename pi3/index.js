@@ -19,7 +19,7 @@ var projectId = 'oamk-iot-powerbox';
 var cloudRegion = 'europe-west1';
 var registryId = 'pi3-powerbox-1';
 var deviceId = 'siva-powerbox-001';
-
+var starttime ;
 var mqttHost = 'mqtt.googleapis.com';
 var mqttPort = 8883;
 var privateKeyFile = './certs/rsa_private.pem';
@@ -84,7 +84,7 @@ client.on('message', function (topic, message, packet) {
 });
 function trunLightOn(stateValue){
   if (stateValue){
-
+    starttime=new Date().toISOString().slice(0, 19).replace('T', ' ');
     ledred.writeSync(1);
   }
 }
@@ -92,6 +92,7 @@ function trunLightOff(stateValue){
   if (stateValue){
 
     ledred.writeSync(0);
+    readSensorUsageData();
   }
 }
 
@@ -132,7 +133,24 @@ function readSensorData() {
       setTimeout(readSensorData, 15000);
     });
 };
+function readSensorUsageData() {
+  bme280.readSensorData()
+    .then((data) => {
+      // temperature_C, pressure_hPa, and humidity are returned by default.
+      // I'll also calculate some unit conversions for display purposes.
 
+      var usageDt = createUsageData();
+      
+     console.log(data.temperature_C);
+        
+
+     sendUsageData(usageDt);
+      console.log('Usage Sending');
+    })
+    .catch((err) => {
+      console.log(`BME280 usage error: ${err}`);
+    });
+};
 function createPayload(temp, humd) {
   return {
     'temp': temp.toFixed(2),
@@ -141,8 +159,21 @@ function createPayload(temp, humd) {
   };
 }
 
+function createUsageData() {
+  return {
+    'DeviceId': deviceId,
+    'StartTime':starttime ,
+    'EndTime': new Date().toISOString().slice(0, 19).replace('T', ' ') 
+  };
+}
+
 function sendData(payload) {
   payload = JSON.stringify(payload);
   console.log(mqttTopic, ': Publishing message:', payload);
   client.publish(mqttTopic, payload, { qos: 1 });
+}
+function sendUsageData(Usageload) {
+  Usageload = JSON.stringify(Usageload);
+  console.log(mqttTopic, ': Publishing message:', Usageload);
+  client.publish(mqttTopic, Usageload, { qos: 1 });
 }
