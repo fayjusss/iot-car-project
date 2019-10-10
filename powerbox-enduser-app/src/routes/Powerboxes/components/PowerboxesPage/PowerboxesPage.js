@@ -6,12 +6,7 @@ import PowerboxRoute from 'routes/Powerboxes/routes/Powerbox'
 import PowerboxTile from '../PowerboxTile'
 import { renderChildren } from 'utils/router'
 
-function PowerboxesPage({
-  powerboxes,
-  classes,
-  match,
-  goToPowerbox
-}) {
+function PowerboxesPage({ powerboxes, classes, match, goToPowerbox }) {
   return (
     <Switch>
       {/* Child routes */}
@@ -23,7 +18,6 @@ function PowerboxesPage({
         render={() => (
           <div className={classes.root}>
             <div className={classes.tiles}>
-              {console.log(powerboxes)}
               {!isEmpty(powerboxes) &&
                 powerboxes.map((powerbox, ind) => (
                   <PowerboxTile
