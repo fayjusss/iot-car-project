@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { Notifications } from 'modules/notification'
 import clsx from 'clsx'
 import { useTheme } from '@material-ui/styles'
 import { useMediaQuery } from '@material-ui/core'
@@ -37,7 +36,6 @@ function CoreLayout({ children, classes }) {
           open={shouldOpenSidebar}
           variant={isDesktop ? 'persistent' : 'temporary'}></Sidebar>
         <div className={classes.children}>{children}</div>
-        <Notifications />
       </div>
     </div>
   )
