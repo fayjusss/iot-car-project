@@ -5,7 +5,7 @@ export const data = {
   datasets: [
     {
       label: 'This year',
-      backgroundColor: '#ff6600',
+      backgroundColor: palette.primary.main,
       data: [18, 5, 19, 27, 29, 19, 20]
     },
     {
