@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/styles'
 import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core'
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
-import PeopleIcon from '@material-ui/icons/PeopleOutlined'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -18,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 70
   },
   avatar: {
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: '#99ccff',
     height: 56,
     width: 56
   },
@@ -42,18 +41,16 @@ const useStyles = makeStyles(theme => ({
 
 const Forecast = props => {
   const { className, ...rest } = props
-  // eslint-disable-next-line no-unused-vars
   const [forecastData, setForecastData] = useState({})
   const classes = useStyles()
 
   // GET WEATHER FORECAST FROM API
   const getForecast = async () => {
     const api_call = await fetch(
-      `api.openweathermap.org/data/2.5/forecast?q=oulu,fi&APPID=c6cd43a6dc304bb188851d339a3daf48`
+      `http://api.openweathermap.org/data/2.5/forecast?q=oulu,fi&APPID=c6cd43a6dc304bb188851d339a3daf48`
     )
     const res = await api_call.json()
     setForecastData(res)
-    // eslint-disable-next-line no-console
     console.log(res)
   }
 
@@ -73,25 +70,33 @@ const Forecast = props => {
               className={classes.title}
               color="textSecondary"
               gutterBottom
-              variant="body2">
+              variant="subtitle1">
               TOMORROW:
             </Typography>
-            <Typography variant="h5"></Typography>
+            {forecastData.list && (
+              <Typography variant="h6">
+                {kelvinToCelsius(forecastData.list[8].main.temp)}
+                {'\u00b0C'}
+              </Typography>
+            )}
           </Grid>
           <Grid item>
-            <Avatar className={classes.avatar}>
-              <PeopleIcon className={classes.icon} />
-            </Avatar>
+            {forecastData.list && (
+              <Avatar className={classes.avatar}>
+                <img
+                  alt=""
+                  src={`http://openweathermap.org/img/w/${forecastData.list[8].weather[0].icon}.png`}
+                />
+              </Avatar>
+            )}
           </Grid>
         </Grid>
         <div className={classes.difference}>
-          <ArrowUpwardIcon className={classes.differenceIcon} />
-          <Typography className={classes.differenceValue} variant="body2">
-            16%
-          </Typography>
-          <Typography className={classes.caption} variant="caption">
-            Since last month
-          </Typography>
+          {forecastData.list && (
+            <Typography className={classes.caption} variant="caption">
+              Forecast for tomorrow: {forecastData.list[8].weather[0].main}
+            </Typography>
+          )}
         </div>
       </CardContent>
     </Card>
