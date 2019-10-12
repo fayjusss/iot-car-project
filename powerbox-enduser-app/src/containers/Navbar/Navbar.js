@@ -7,6 +7,7 @@ import { AppBar, Toolbar, Hidden, IconButton } from '@material-ui/core'
 import BatteryChargingFullIcon from '@material-ui/icons/BatteryChargingFull'
 import Avatar from '@material-ui/core/Avatar'
 import MenuIcon from '@material-ui/icons/Menu'
+import InputIcon from '@material-ui/icons/Input'
 
 function Navbar({
   authExists,
@@ -31,17 +32,15 @@ function Navbar({
           Powerbox
         </Typography>
         <div className={classes.flexGrow} />
+        <IconButton className={classes.signOutButton} color="inherit">
+          <InputIcon />
+        </IconButton>
         <Hidden mdDown>
           <Hidden lgUp>
             <IconButton color="inherit" onClick={onSidebarOpen}>
               <MenuIcon />
             </IconButton>
           </Hidden>
-        </Hidden>
-        <Hidden lgUp>
-          <IconButton color="inherit" onClick={onSidebarOpen}>
-            <MenuIcon />
-          </IconButton>
         </Hidden>
       </Toolbar>
     </AppBar>

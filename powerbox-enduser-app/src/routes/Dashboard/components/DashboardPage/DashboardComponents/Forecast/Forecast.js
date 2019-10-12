@@ -3,7 +3,6 @@ import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/styles'
 import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core'
-import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -51,7 +50,6 @@ const Forecast = props => {
     )
     const res = await api_call.json()
     setForecastData(res)
-    console.log(res)
   }
 
   useEffect(() => {

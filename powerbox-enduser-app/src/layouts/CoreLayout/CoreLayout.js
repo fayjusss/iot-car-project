@@ -5,6 +5,7 @@ import { useTheme } from '@material-ui/styles'
 import { useMediaQuery } from '@material-ui/core'
 import Navbar from 'containers/Navbar'
 import Sidebar from 'containers/Sidebar'
+import Footer from 'containers/Footer'
 
 function CoreLayout({ children, classes }) {
   const theme = useTheme()
@@ -36,6 +37,7 @@ function CoreLayout({ children, classes }) {
           open={shouldOpenSidebar}
           variant={isDesktop ? 'persistent' : 'temporary'}></Sidebar>
         <div className={classes.children}>{children}</div>
+        <Footer></Footer>
       </div>
     </div>
   )
