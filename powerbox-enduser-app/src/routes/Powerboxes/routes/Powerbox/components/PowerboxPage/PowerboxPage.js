@@ -2,22 +2,29 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
-import Typography from '@material-ui/core/Typography'
+import Grid from '@material-ui/core/Grid'
+import ControlBar from 'components/ControlBar'
 
 function PowerboxPage({ powerbox, powerboxId, classes }) {
   return (
     <div className={classes.root}>
-      <Card className={classes.card}>
-        <CardContent>
-          <Typography className={classes.title} component="h2">
-            {powerbox.name || 'Powerbox'}
-          </Typography>
-          <Typography className={classes.subtitle}>{powerboxId}</Typography>
-          <div style={{ marginTop: '10rem' }}>
-            <pre>{JSON.stringify(powerbox, null, 2)}</pre>
-          </div>
-        </CardContent>
-      </Card>
+      <Grid className={classes.root} container spacing={2}>
+        <Grid item container direction="column" spacing={2} lg={8} xs={12}>
+          <Grid item spacing={2}>
+            <Card>
+              <CardContent>Something</CardContent>
+            </Card>
+          </Grid>
+          <Grid item>
+            <Card>
+              <CardContent>Something</CardContent>
+            </Card>
+          </Grid>
+        </Grid>
+        <Grid item lg={4} xs={12}>
+          <ControlBar />
+        </Grid>
+      </Grid>
     </div>
   )
 }
