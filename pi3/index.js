@@ -135,14 +135,15 @@ function readSensorData() {
     });
 };
 function readSensorUsageData() {
-  bme280.readSensorData()
+  
+    bme280.readSensorData()
     .then((data) => {
       // temperature_C, pressure_hPa, and humidity are returned by default.
       // I'll also calculate some unit conversions for display purposes.
 
       var usageDt = createUsageData();
       
-     console.log('My Test');
+     console.log(usageDt.toString());
         
 
      sendUsageData(usageDt);
@@ -172,7 +173,7 @@ function sendData(payload) {
   payload = JSON.stringify(payload);
   console.log(mqttTopic, ': Publishing message:', payload);
   client.publish(mqttTopic, payload, { qos: 1 });
-}
+}S
 function sendUsageData(Usageload) {
   Usageload = JSON.stringify(Usageload);
   console.log('Befor ----------');
