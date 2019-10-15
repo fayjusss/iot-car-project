@@ -34,6 +34,7 @@
     "chart.js": "^2.8.0",
     "chartist": "^0.11.4",
     "firebase": "^6.6.0",
+    "google-maps-react": "^2.0.2",
     "history": "^4.9.0",
     "kelvin-to-celsius": "^1.1.0",
     "lodash": "^4.17.15",
