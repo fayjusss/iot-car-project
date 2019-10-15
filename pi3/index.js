@@ -70,14 +70,14 @@ client.on('error', function (err) {
 
 client.on('message', function (topic, message, packet) {
   var obj = JSON.parse(Buffer.from(message, 'base64').toString('ascii'));
-  
-  if (obj.startnow) {
-    trunLightOn(obj.startnow);
-  }
-  if (!obj.startnow && obj.stopnow){
-    trunLightOff(obj.stopnow);
-  }
-  startAutomaticTemp=obj.triggeringTemp;
+  ledred.writeSync(1);
+  // if (obj.startnow) {
+  //   trunLightOn(obj.startnow);
+  // }
+  // if (!obj.startnow && obj.stopnow){
+  //   trunLightOff(obj.stopnow);
+  // }
+  // startAutomaticTemp=obj.triggeringTemp;
   //  setTimeout(endBlink, 5000);
   console.log(topic, 'message received: ', Buffer.from(message, 'base64').toString('ascii'));
   console.log('-------------------');
