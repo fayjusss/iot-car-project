@@ -70,7 +70,7 @@ client.on('error', function (err) {
 
 client.on('message', function (topic, message, packet) {
   var obj = JSON.parse(Buffer.from(message, 'base64').toString('ascii'));
-  ledred.writeSync(1);
+//  ledred.writeSync(1);
   // if (obj.startnow) {
   //   trunLightOn(obj.startnow);
   // }
@@ -85,14 +85,14 @@ client.on('message', function (topic, message, packet) {
 function trunLightOn(stateValue){
   if (stateValue){
     starttime=new Date().toISOString().slice(0, 19).replace('T', ' ');
-    ledred.writeSync(1);
+//    ledred.writeSync(1);
   }
 }
 function trunLightOff(stateValue){
   if (stateValue){
 
-    ledred.writeSync(0);
-    readSensorUsageData();
+  //  ledred.writeSync(0);
+  //  readSensorUsageData();
   }
 }
 
@@ -120,7 +120,7 @@ function readSensorData() {
      console.log(data.temperature_C);
      if (data.temperature_C<startAutomaticTemp)
      {
-      trunLightOn(true);
+    //  trunLightOn(true);
      }
      
 
