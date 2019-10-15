@@ -2,8 +2,8 @@ var fs = require('fs');
 var jwt = require('jsonwebtoken');
 var mqtt = require('mqtt');
 var BME280 = require('bme280-sensor');
-// var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
-// var ledred = new Gpio(4, 'out');
+ var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
+ var ledred = new Gpio(17, 'out');
 var startAutomaticTemp=0;
 
 
