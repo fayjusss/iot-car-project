@@ -4,20 +4,24 @@ import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Grid from '@material-ui/core/Grid'
 import ControlBar from 'components/ControlBar'
+import Map from '../Map/map'
+import { makeStyles } from '@material-ui/core/styles'
 
 function PowerboxPage({ powerbox, powerboxId, classes }) {
   return (
     <div className={classes.root}>
       <Grid className={classes.root} container spacing={2}>
         <Grid item container direction="column" spacing={2} lg={8} xs={12}>
-          <Grid item spacing={2}>
+          <Grid item spacing={5}>
             <Card>
-              <CardContent>Something</CardContent>
+              <CardContent></CardContent>
             </Card>
           </Grid>
           <Grid item>
             <Card>
-              <CardContent>Something</CardContent>
+              <CardContent>
+                <Map></Map>
+              </CardContent>
             </Card>
           </Grid>
         </Grid>
