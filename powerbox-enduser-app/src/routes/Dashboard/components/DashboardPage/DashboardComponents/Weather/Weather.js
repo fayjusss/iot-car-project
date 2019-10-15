@@ -47,7 +47,7 @@ const Weather = props => {
 
   const getWeather = async () => {
     const api_call = await fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=oulu,fi&appid=c6cd43a6dc304bb188851d339a3daf48`
+      `https://api.openweathermap.org/data/2.5/weather?q=oulu,fi&appid=c6cd43a6dc304bb188851d339a3daf48`
     )
     const response = await api_call.json()
     setWeatherData(response)
@@ -85,7 +85,7 @@ const Weather = props => {
               <Avatar className={classes.avatar}>
                 <img
                   alt=""
-                  src={`http://openweathermap.org/img/w/${weatherData.weather[0].icon}.png`}
+                  src={`https://openweathermap.org/img/w/${weatherData.weather[0].icon}.png`}
                 />
               </Avatar>
             )}

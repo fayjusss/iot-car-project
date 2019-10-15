@@ -40,7 +40,7 @@ const TaskProgress = props => {
   // GET WEATHER FORECAST FROM API
   const getForecastweek = async () => {
     const api_call = await fetch(
-      `http://api.openweathermap.org/data/2.5/forecast?q=oulu,fi&APPID=c6cd43a6dc304bb188851d339a3daf48`
+      `https://api.openweathermap.org/data/2.5/forecast?q=oulu,fi&APPID=c6cd43a6dc304bb188851d339a3daf48`
     )
     const res = await api_call.json()
     setForecastweekData(res)
@@ -77,7 +77,7 @@ const TaskProgress = props => {
               <Avatar className={classes.avatar}>
                 <img
                   alt=""
-                  src={`http://openweathermap.org/img/w/${forecastweekData.list[8].weather[0].icon}.png`}
+                  src={`https://openweathermap.org/img/w/${forecastweekData.list[8].weather[0].icon}.png`}
                 />
               </Avatar>
             )}

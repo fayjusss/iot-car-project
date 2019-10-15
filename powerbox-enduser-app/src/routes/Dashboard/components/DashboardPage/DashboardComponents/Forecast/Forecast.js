@@ -46,7 +46,7 @@ const Forecast = props => {
   // GET WEATHER FORECAST FROM API
   const getForecast = async () => {
     const api_call = await fetch(
-      `http://api.openweathermap.org/data/2.5/forecast?q=oulu,fi&APPID=c6cd43a6dc304bb188851d339a3daf48`
+      `https://api.openweathermap.org/data/2.5/forecast?q=oulu,fi&APPID=c6cd43a6dc304bb188851d339a3daf48`
     )
     const res = await api_call.json()
     setForecastData(res)
@@ -83,7 +83,7 @@ const Forecast = props => {
               <Avatar className={classes.avatar}>
                 <img
                   alt=""
-                  src={`http://openweathermap.org/img/w/${forecastData.list[8].weather[0].icon}.png`}
+                  src={`https://openweathermap.org/img/w/${forecastData.list[8].weather[0].icon}.png`}
                 />
               </Avatar>
             )}
