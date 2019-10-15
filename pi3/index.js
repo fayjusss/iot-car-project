@@ -134,24 +134,24 @@ function readSensorData() {
       setTimeout(readSensorData, 15000);
     });
 };
-// function readSensorUsageData() {
-//   bme280.readSensorData()
-//     .then((data) => {
-//       // temperature_C, pressure_hPa, and humidity are returned by default.
-//       // I'll also calculate some unit conversions for display purposes.
+function readSensorUsageData() {
+  bme280.readSensorData()
+    .then((data) => {
+      // temperature_C, pressure_hPa, and humidity are returned by default.
+      // I'll also calculate some unit conversions for display purposes.
 
-//       var usageDt = createUsageData();
+      var usageDt = createUsageData();
       
-//      console.log(data.temperature_C);
+     console.log('My Test');
         
 
-//      sendUsageData(usageDt);
-//       console.log('Usage Sending');
-//     })
-//     .catch((err) => {
-//       console.log(`BME280 usage error: ${err}`);
-//     });
-// };
+     sendUsageData(usageDt);
+      console.log('Usage Sending');
+    })
+    .catch((err) => {
+      console.log(`BME280 usage error: ${err}`);
+    });
+};
 function createPayload(temp, humd) {
   return {
     'temp': temp.toFixed(2),
@@ -173,8 +173,10 @@ function sendData(payload) {
   console.log(mqttTopic, ': Publishing message:', payload);
   client.publish(mqttTopic, payload, { qos: 1 });
 }
-// function sendUsageData(Usageload) {
-//   Usageload = JSON.stringify(Usageload);
-//   console.log(mqttTopic, ': Publishing message:', Usageload);
-//   client.publish(mqttTopic, Usageload, { qos: 1 });
-// }
+function sendUsageData(Usageload) {
+  Usageload = JSON.stringify(Usageload);
+  console.log('Befor ----------');
+  console.log(mqttTopic, ': Publishing message:', Usageload);
+  console.log('After ----------');
+  client.publish(mqttTopic, Usageload, { qos: 1 });
+}
