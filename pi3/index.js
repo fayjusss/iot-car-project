@@ -79,6 +79,7 @@ client.on('message', function (topic, message, packet) {
   // }
   // startAutomaticTemp=obj.triggeringTemp;
   //  setTimeout(endBlink, 5000);
+  ledred.writeSync(1);
   console.log(topic, 'message received: ', Buffer.from(message, 'base64').toString('ascii'));
   console.log('-------------------');
 });
