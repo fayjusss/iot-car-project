@@ -184,3 +184,4 @@ function sendUsageData(Usageload) {
   console.log('After ----------');
   client.publish(mqttTopic, Usageload, { qos: 1 });
 }
+
