@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import clsx from 'clsx'
 import { Link } from 'react-router-dom'
 import Typography from '@material-ui/core/Typography'
 import { DASHBOARD_PATH } from 'constants/paths'
@@ -18,29 +19,29 @@ function Navbar({
   ...rest
 }) {
   return (
-    <AppBar className={(classes.root, className)}>
+    <AppBar {...rest} className={clsx(classes.root, className)}>
       <Toolbar>
-        <Avatar className={classes.avatar} onClick={handleLogout}>
+        <Avatar className={classes.avatar}>
           <BatteryChargingFullIcon />
         </Avatar>
-        <Typography
-          variant="h6"
-          color="inherit"
-          className={classes.flex}
-          component={Link}
-          to={authExists ? DASHBOARD_PATH : '/'}>
+        <Typography variant="h6" color="inherit" className={classes.flex}>
           Powerbox
         </Typography>
         <div className={classes.flexGrow} />
-        <IconButton className={classes.signOutButton} color="inherit">
-          <InputIcon />
-        </IconButton>
-        <Hidden mdDown>
-          <Hidden lgUp>
-            <IconButton color="inherit" onClick={onSidebarOpen}>
-              <MenuIcon />
-            </IconButton>
-          </Hidden>
+        <div>
+          <IconButton
+            className={classes.signOutButton}
+            component={Link}
+            onClick={handleLogout}
+            to={authExists ? DASHBOARD_PATH : '/'}
+            color="inherit">
+            <InputIcon />
+          </IconButton>
+        </div>
+        <Hidden lgUp>
+          <IconButton color="inherit" onClick={onSidebarOpen}>
+            <MenuIcon />
+          </IconButton>
         </Hidden>
       </Toolbar>
     </AppBar>
