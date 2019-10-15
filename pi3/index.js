@@ -2,8 +2,8 @@ var fs = require('fs');
 var jwt = require('jsonwebtoken');
 var mqtt = require('mqtt');
 var BME280 = require('bme280-sensor');
-var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
-var ledred = new Gpio(4, 'out');
+// var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
+// var ledred = new Gpio(4, 'out');
 var startAutomaticTemp=0;
 
 
@@ -70,7 +70,7 @@ client.on('error', function (err) {
 
 client.on('message', function (topic, message, packet) {
   var obj = JSON.parse(Buffer.from(message, 'base64').toString('ascii'));
-  ledred.writeSync(1);
+  //ledred.writeSync(1);
   // if (obj.startnow) {
   //   trunLightOn(obj.startnow);
   // }
@@ -82,19 +82,19 @@ client.on('message', function (topic, message, packet) {
   console.log(topic, 'message received: ', Buffer.from(message, 'base64').toString('ascii'));
   console.log('-------------------');
 });
-function trunLightOn(stateValue){
-  if (stateValue){
-    starttime=new Date().toISOString().slice(0, 19).replace('T', ' ');
-    ledred.writeSync(1);
-  }
-}
-function trunLightOff(stateValue){
-  if (stateValue){
+// function trunLightOn(stateValue){
+//   if (stateValue){
+//     starttime=new Date().toISOString().slice(0, 19).replace('T', ' ');
+//     ledred.writeSync(1);
+//   }
+// }
+// function trunLightOff(stateValue){
+//   if (stateValue){
 
-    ledred.writeSync(0);
-    readSensorUsageData();
-  }
-}
+//     ledred.writeSync(0);
+//     readSensorUsageData();
+//   }
+// }
 
 
 function createJwt(projectId, privateKeyFile, algorithm) {
@@ -118,10 +118,10 @@ function readSensorData() {
       var payload = createPayload(data.temperature_C, data.humidity);
       
      console.log(data.temperature_C);
-     if (data.temperature_C<startAutomaticTemp)
-     {
-      trunLightOn(true);
-     }
+    //  if (data.temperature_C<startAutomaticTemp)
+    //  {
+    //   trunLightOn(true);
+    //  }
      
 
       sendData(payload);
@@ -133,24 +133,24 @@ function readSensorData() {
       setTimeout(readSensorData, 15000);
     });
 };
-function readSensorUsageData() {
-  bme280.readSensorData()
-    .then((data) => {
-      // temperature_C, pressure_hPa, and humidity are returned by default.
-      // I'll also calculate some unit conversions for display purposes.
+// function readSensorUsageData() {
+//   bme280.readSensorData()
+//     .then((data) => {
+//       // temperature_C, pressure_hPa, and humidity are returned by default.
+//       // I'll also calculate some unit conversions for display purposes.
 
-      var usageDt = createUsageData();
+//       var usageDt = createUsageData();
       
-     console.log(data.temperature_C);
+//      console.log(data.temperature_C);
         
 
-     sendUsageData(usageDt);
-      console.log('Usage Sending');
-    })
-    .catch((err) => {
-      console.log(`BME280 usage error: ${err}`);
-    });
-};
+//      sendUsageData(usageDt);
+//       console.log('Usage Sending');
+//     })
+//     .catch((err) => {
+//       console.log(`BME280 usage error: ${err}`);
+//     });
+// };
 function createPayload(temp, humd) {
   return {
     'temp': temp.toFixed(2),
@@ -172,8 +172,8 @@ function sendData(payload) {
   console.log(mqttTopic, ': Publishing message:', payload);
   client.publish(mqttTopic, payload, { qos: 1 });
 }
-function sendUsageData(Usageload) {
-  Usageload = JSON.stringify(Usageload);
-  console.log(mqttTopic, ': Publishing message:', Usageload);
-  client.publish(mqttTopic, Usageload, { qos: 1 });
-}
+// function sendUsageData(Usageload) {
+//   Usageload = JSON.stringify(Usageload);
+//   console.log(mqttTopic, ': Publishing message:', Usageload);
+//   client.publish(mqttTopic, Usageload, { qos: 1 });
+// }
