@@ -176,7 +176,7 @@ function sendData(payload) {
   payload = JSON.stringify(payload);
   console.log(mqttTopic, ': Publishing message:', payload);
   client.publish(mqttTopic, payload, { qos: 1 });
-}S
+}
 function sendUsageData(Usageload) {
   Usageload = JSON.stringify(Usageload);
   console.log('Befor ----------');
