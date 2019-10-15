@@ -71,12 +71,9 @@ client.on('error', function (err) {
 client.on('message', function (topic, message, packet) {
   var obj = JSON.parse(Buffer.from(message, 'base64').toString('ascii'));
   //ledred.writeSync(1);
-  if (obj.startnow) {
-    trunLightOn(obj.startnow);
-  }
-  if (!obj.startnow && obj.stopnow){
-    trunLightOff(obj.stopnow);
-  }
+  
+    trunLightOn(obj.trigger);
+  
   startAutomaticTemp=obj.triggeringTemp;
   //  setTimeout(endBlink, 5000);
   
@@ -88,6 +85,12 @@ function trunLightOn(stateValue){
     starttime=new Date().toISOString().slice(0, 19).replace('T', ' ');
     ledred.writeSync(1);
   }
+  else
+  {
+    ledred.writeSync(0);
+    readSensorUsageData();
+  }
+
 }
 function trunLightOff(stateValue){
   if (stateValue){
