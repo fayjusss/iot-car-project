@@ -2,10 +2,11 @@ var fs = require('fs');
 var jwt = require('jsonwebtoken');
 var mqtt = require('mqtt');
 var BME280 = require('bme280-sensor');
- var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
- var ledred = new Gpio(17, 'out');
-var startAutomaticTemp=0;
-
+var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
+var ledred = new Gpio(17, 'out');
+var startAutomaticTemp = 0;
+var _CurTime = new Date();
+var _CurTimeplus =new Date();
 
 // The BME280 constructor options are optional.
 const options = {
@@ -19,15 +20,16 @@ var projectId = 'oamk-iot-powerbox';
 var cloudRegion = 'europe-west1';
 var registryId = 'pi3-powerbox-1';
 var deviceId = 'siva-powerbox-001';
-var starttime ;
+var starttime;
 var mqttHost = 'mqtt.googleapis.com';
 var mqttPort = 8883;
 var privateKeyFile = './certs/rsa_private.pem';
 var algorithm = 'RS256';
 var messageType = 'state'; // or event 
-
+var _deviceTemp = 0;
 var mqttClientId = 'projects/' + projectId + '/locations/' + cloudRegion + '/registries/' + registryId + '/devices/' + deviceId;
 var mqttTopic = '/devices/' + deviceId + '/' + messageType;
+var mqttTopic1 = '/devices/' + deviceId + '/event';
 
 var connectionArgs = {
   host: mqttHost,
@@ -70,41 +72,51 @@ client.on('error', function (err) {
 
 client.on('message', function (topic, message, packet) {
   var obj = JSON.parse(Buffer.from(message, 'base64').toString('ascii'));
+  _CurTime = new Date();
+ 
+  console.log('_CurTime');
+  console.log(new Date());
+  console.log(new Date());
+  console.log(_CurTimeplus);
   //ledred.writeSync(1);
-  
-    trunLightOn(obj.trigger);
-  
-  startAutomaticTemp=obj.triggeringTemp;
+  if (obj.trigger) {
+    //readSensorUsageData();
+    trunLightOn(true);
+  }
+  else if ((new Date(obj.triggeringTime) > _CurTime) && (new Date(obj.triggeringTime) < _CurTimeplus)) {
+    console.log("Time read");
+    trunLightOn(true);
+  }
+  else if (_deviceTemp < obj.triggeringTemp) {
+    trunLightOn(true);
+  }
+  else { trunLightOn(false); }
+  //   trunLightOn(obj.trigger);
+
+  // startAutomaticTemp=obj.triggeringTemp;
   //  setTimeout(endBlink, 5000);
-  
+
+  console.log('-------------------');
   console.log(topic, 'message received: ', Buffer.from(message, 'base64').toString('ascii'));
   console.log('-------------------');
 });
-function trunLightOn(stateValue){
-  if (stateValue){
-    starttime=new Date().toISOString().slice(0, 19).replace('T', ' ');
+function trunLightOn(stateValue) {
+  if (stateValue) {
+    //starttime=new Date().toISOString().slice(0, 19).replace('T', ' ');
     ledred.writeSync(1);
   }
-  else
-  {
+  else {
     ledred.writeSync(0);
-    readSensorUsageData();
+    //readSensorUsageData();
   }
 
-}
-function trunLightOff(stateValue){
-  if (stateValue){
-
-    ledred.writeSync(0);
-    readSensorUsageData();
-  }
 }
 
 
 function createJwt(projectId, privateKeyFile, algorithm) {
   var token = {
     'iat': parseInt(Date.now() / 1000),
-    'exp': parseInt(Date.now() / 1000) + 20 * 60, // 1 day 
+    'exp': parseInt(Date.now() / 1000) + 1000 * 60, // 1 day 
     'aud': projectId
   };
   var privateKey = fs.readFileSync(privateKeyFile);
@@ -120,13 +132,13 @@ function readSensorData() {
       // I'll also calculate some unit conversions for display purposes.
 
       var payload = createPayload(data.temperature_C, data.humidity);
-      
-     console.log(data.temperature_C);
-    //  if (data.temperature_C<startAutomaticTemp)
-    //  {
-    //   trunLightOn(true);
-    //  }
-     
+      _deviceTemp = data.temperature_C;
+      console.log(data.temperature_C);
+      //  if (data.temperature_C<startAutomaticTemp)
+      //  {
+      //   trunLightOn(true);
+      //  }
+
 
       sendData(payload);
       console.log('Transmitting in 15 seconds');
@@ -138,26 +150,13 @@ function readSensorData() {
     });
 };
 function readSensorUsageData() {
-  
-    bme280.readSensorData()
-    .then((data) => {
-      // temperature_C, pressure_hPa, and humidity are returned by default.
-      // I'll also calculate some unit conversions for display purposes.
-
-      var usageDt = createUsageData();
-      
-     console.log(usageDt.toString());
-        
-
-     sendUsageData(usageDt);
-      console.log('Usage Sending');
-    })
-    .catch((err) => {
-      console.log(`BME280 usage error: ${err}`);
-    });
-};
+  var usageDt = createUsageData();
+  sendUsageData(usageDt);
+  console.log(`DeviceUsage usage error:`);
+}
 function createPayload(temp, humd) {
   return {
+    'device_id': deviceId,
     'temp': temp.toFixed(2),
     'humd': humd.toFixed(2),
     'time': new Date().toISOString().slice(0, 19).replace('T', ' ') // https://stackoverflow.com/a/11150727/1015046 
@@ -166,10 +165,15 @@ function createPayload(temp, humd) {
 
 function createUsageData() {
   return {
-    'DeviceId': deviceId,
-    'StartTime':starttime ,
-    'EndTime': new Date().toISOString().slice(0, 19).replace('T', ' ') 
+    'DeviceId': '1234',
+    'StartTime': new Date(),//starttime ,
+    'EndTime': new Date()
   };
+  // return {
+  //   'DeviceId': deviceId,
+  //   'StartTime':new Date().toISOString().slice(0, 19).replace('T', ' ') ,//starttime ,
+  //   'EndTime': new Date().toISOString().slice(0, 19).replace('T', ' ') 
+  // };
 }
 
 function sendData(payload) {
@@ -180,8 +184,8 @@ function sendData(payload) {
 function sendUsageData(Usageload) {
   Usageload = JSON.stringify(Usageload);
   console.log('Befor ----------');
-  console.log(mqttTopic, ': Publishing message:', Usageload);
+  console.log(mqttTopic1, ': Publishing message:', Usageload);
+  client.publish(mqttTopic1, Usageload);
   console.log('After ----------');
-  client.publish(mqttTopic, Usageload, { qos: 1 });
 }
 
