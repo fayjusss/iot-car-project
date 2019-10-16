@@ -4,23 +4,30 @@ import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Grid from '@material-ui/core/Grid'
 import ControlBar from 'components/ControlBar'
+import ControlSwitch from 'components/ControlSwitch'
+import { Typography, Divider } from '@material-ui/core'
 import Map from '../Map/map'
-import { makeStyles } from '@material-ui/core/styles'
 
-function PowerboxPage({ powerbox, powerboxId, classes }) {
+function PowerboxPage({ powerbox, updateTrigger, classes }) {
   return (
     <div className={classes.root}>
       <Grid className={classes.root} container spacing={2}>
         <Grid item container direction="column" spacing={2} lg={8} xs={12}>
-          <Grid item spacing={5}>
-            <Card>
-              <CardContent></CardContent>
-            </Card>
+          <Grid item spacing={2} className={classes.controlSwitch}>
+            <ControlSwitch
+              trigger={powerbox.trigger}
+              updateTrigger={updateTrigger}
+            />
           </Grid>
           <Grid item>
             <Card>
               <CardContent>
-                <Map></Map>
+                <Typography type="subtitle1">Device location:</Typography>
+                <Divider className={classes.divider} />
+                <Map
+                  lattitude={powerbox.lattitude}
+                  longitude={powerbox.longitude}
+                  powerbox={powerbox}></Map>
               </CardContent>
             </Card>
           </Grid>

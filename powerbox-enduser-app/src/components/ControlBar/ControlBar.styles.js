@@ -4,5 +4,8 @@ export default theme => ({
   },
   controlBar: {
     height: 500
+  },
+  divider: {
+    margin: theme.spacing(2, 0)
   }
 })
