@@ -16,7 +16,8 @@ import {
   TableHead,
   TableRow,
   Tooltip,
-  TableSortLabel
+  TableSortLabel,
+  Typography
 } from '@material-ui/core'
 import ArrowRightIcon from '@material-ui/icons/ArrowRight'
 
@@ -44,7 +45,6 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-
 const TableComponent = props => {
   const { className, ...rest } = props
 
@@ -54,14 +54,9 @@ const TableComponent = props => {
 
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
-      <CardHeader
-        action={
-          <Button color="primary" size="small" variant="outlined">
-            New entry
-          </Button>
-        }
-        title="Latest Orders"
-      />
+      <CardHeader title="Your powerbox use history">
+        <Typography type="subtitle1">Your powerbox use history:</Typography>
+      </CardHeader>
       <Divider />
       <CardContent className={classes.content}>
         <div className={classes.inner}>
