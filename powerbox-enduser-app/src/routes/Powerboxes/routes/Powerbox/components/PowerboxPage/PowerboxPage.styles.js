@@ -1,8 +1,9 @@
 export default theme => ({
   root: {
-    padding: theme.spacing(4)
+    padding: theme.spacing(2)
   },
-  card: {
-    
+  controlSwitch: {
+    display: 'flex',
+    justifyContent: 'flex-end'
   }
 })
