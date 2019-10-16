@@ -5,5 +5,8 @@ export default theme => ({
   controlSwitch: {
     display: 'flex',
     justifyContent: 'flex-end'
+  },
+  divider: {
+    margin: theme.spacing(2, 0)
   }
 })

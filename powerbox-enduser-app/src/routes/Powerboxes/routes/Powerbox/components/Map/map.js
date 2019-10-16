@@ -1,54 +1,63 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react'
+import { Typography } from '@material-ui/core'
 
 const mapStyles = {
   position: 'relative',
-  width: '550px',
+  width: '600px',
   height: '200px'
 }
+
 const containerStyle = { position: 'relative' }
 
 function MapContainer({ google, lattitude, longitude, powerbox }) {
   const [showInfoWindow, setShowInfoWindow] = useState(false)
+  const [activeMarker, setActiveMarker] = useState(false)
 
-  const handleMouseOver = e => {
+  const handleMouseOver = (props, marker, e) => {
     setShowInfoWindow(true)
+    setActiveMarker(marker)
+    console.log(powerbox)
   }
-  const handleMouseExit = e => {
+  const handleMouseExit = (props, marker, e) => {
     setShowInfoWindow(false)
+    setActiveMarker(false)
   }
 
   return (
-    <Map
-      google={google}
-      containerStyle={containerStyle}
-      zoom={12}
-      style={mapStyles}
-      initialCenter={{ lat: 64.999458, lng: 25.51055 }}
-      defaultOptions={{
-        // these following 7 options turn certain controls off see link below
-        streetViewControl: false,
-        scaleControl: false,
-        mapTypeControl: false,
-        panControl: false,
-        zoomControl: false,
-        rotateControl: false,
-        fullscreenControl: false
-      }}
-      disableDefaultUI>
-      <Marker
-        position={{ lat: lattitude, lng: longitude }}
-        label={powerbox.id}
-        onMouseOver={handleMouseOver}
-        onMouseOut={handleMouseExit}>
-        {showInfoWindow && (
-          <InfoWindow>
-            <h4>hello</h4>
-          </InfoWindow>
-        )}
-      </Marker>
-    </Map>
+    <div>
+      <Map
+        google={google}
+        containerStyle={containerStyle}
+        zoom={12}
+        style={mapStyles}
+        initialCenter={{ lat: 64.999458, lng: 25.51055 }}
+        defaultOptions={{
+          // these following 7 options turn certain controls off see link below
+          streetViewControl: false,
+          scaleControl: false,
+          mapTypeControl: false,
+          panControl: false,
+          zoomControl: false,
+          rotateControl: false,
+          fullscreenControl: false
+        }}
+        disableDefaultUI>
+        <Marker
+          position={{ lat: lattitude, lng: longitude }}
+          label={powerbox.id}
+          // onMouseOver={handleMouseOver}
+          onClick={handleMouseOver}
+          // onMouseOut={handleMouseExit}
+        />
+        <InfoWindow marker={activeMarker} visible={showInfoWindow}>
+          <div>
+            <Typography type="subtitle1">{powerbox.location}</Typography>
+          </div>
+        </InfoWindow>
+      </Map>
+    </div>
   )
 }
 

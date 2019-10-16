@@ -5,6 +5,7 @@ import CardContent from '@material-ui/core/CardContent'
 import Grid from '@material-ui/core/Grid'
 import ControlBar from 'components/ControlBar'
 import ControlSwitch from 'components/ControlSwitch'
+import { Typography, Divider } from '@material-ui/core'
 import Map from '../Map/map'
 
 function PowerboxPage({ powerbox, updateTrigger, classes }) {
@@ -21,6 +22,8 @@ function PowerboxPage({ powerbox, updateTrigger, classes }) {
           <Grid item>
             <Card>
               <CardContent>
+                <Typography type="subtitle1">Device location:</Typography>
+                <Divider className={classes.divider} />
                 <Map
                   lattitude={powerbox.lattitude}
                   longitude={powerbox.longitude}
