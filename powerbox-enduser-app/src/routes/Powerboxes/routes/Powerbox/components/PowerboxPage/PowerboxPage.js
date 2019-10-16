@@ -5,6 +5,8 @@ import CardContent from '@material-ui/core/CardContent'
 import Grid from '@material-ui/core/Grid'
 import ControlBar from 'components/ControlBar'
 import ControlSwitch from 'components/ControlSwitch'
+import Map from '../Map/map'
+import { makeStyles } from '@material-ui/core/styles'
 
 function PowerboxPage({ powerbox, updateTrigger, classes }) {
   return (
@@ -19,7 +21,9 @@ function PowerboxPage({ powerbox, updateTrigger, classes }) {
           </Grid>
           <Grid item>
             <Card>
-              <CardContent>Something</CardContent>
+              <CardContent>
+                <Map></Map>
+              </CardContent>
             </Card>
           </Grid>
         </Grid>

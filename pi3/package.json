@@ -13,6 +13,7 @@
     "bme280-sensor": "^0.1.6",
     "jsonwebtoken": "^8.5.1",
     "mqtt": "^3.0.0",
-    "onoff": "^5.0.0"
+    "onoff": "^5.0.0",
+    "rpi-gpio": "^2.1.5"
   }
 }
