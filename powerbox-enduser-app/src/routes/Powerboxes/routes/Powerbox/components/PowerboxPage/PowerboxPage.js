@@ -5,7 +5,6 @@ import CardContent from '@material-ui/core/CardContent'
 import Grid from '@material-ui/core/Grid'
 import ControlBar from 'components/ControlBar'
 import Map from '../Map/map'
-import { makeStyles } from '@material-ui/core/styles'
 
 function PowerboxPage({ powerbox, powerboxId, classes }) {
   return (
@@ -20,7 +19,10 @@ function PowerboxPage({ powerbox, powerboxId, classes }) {
           <Grid item>
             <Card>
               <CardContent>
-                <Map></Map>
+                <Map
+                  lattitude={powerbox.lattitude}
+                  longitude={powerbox.longitude}
+                  powerbox={powerbox}></Map>
               </CardContent>
             </Card>
           </Grid>
