@@ -5,7 +5,13 @@ import { get } from 'lodash'
 import firestoreConnect from 'react-redux-firebase/lib/firestoreConnect'
 import { withStyles } from '@material-ui/core/styles'
 import { withRouter } from 'react-router-dom'
-import { setPropTypes, setDisplayName, withProps } from 'recompose'
+import { withFirestore } from 'react-redux-firebase'
+import {
+  withHandlers,
+  setPropTypes,
+  setDisplayName,
+  withProps
+} from 'recompose'
 import { spinnerWhileLoading } from 'utils/components'
 import { UserIsAuthenticated } from 'utils/router'
 import styles from './PowerboxPage.styles'
@@ -26,7 +32,7 @@ export default compose(
       }).isRequired
     }).isRequired
   }),
-  // Map projectId from route params (powerboxes/:powerboxId) into props.powerboxId
+  // Map powerboxId from route params (powerboxes/:powerboxId) into props.powerboxId
   withProps(({ match: { params: { powerboxId } } }) => ({
     powerboxId
   })),
@@ -38,12 +44,21 @@ export default compose(
       doc: powerboxId
     }
   ]),
+  withFirestore,
   // Map projects from redux state to props
   connect(({ firestore: { data } }, { powerboxId }) => ({
     powerbox: get(data, `powerboxes.${powerboxId}`)
   })),
   // Show loading spinner while project is loading
   spinnerWhileLoading(['powerbox']),
+  // Add handlers as props
+  withHandlers({
+    updateTrigger: props => trigger => {
+      return props.firestore.update(`powerboxes/${props.powerboxId}`, {
+        trigger: !trigger
+      })
+    }
+  }),
   // Add styles as props.classes
   withStyles(styles)
 )

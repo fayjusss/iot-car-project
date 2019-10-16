@@ -4,16 +4,18 @@ import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Grid from '@material-ui/core/Grid'
 import ControlBar from 'components/ControlBar'
+import ControlSwitch from 'components/ControlSwitch'
 
-function PowerboxPage({ powerbox, powerboxId, classes }) {
+function PowerboxPage({ powerbox, updateTrigger, classes }) {
   return (
     <div className={classes.root}>
       <Grid className={classes.root} container spacing={2}>
         <Grid item container direction="column" spacing={2} lg={8} xs={12}>
-          <Grid item spacing={2}>
-            <Card>
-              <CardContent>Something</CardContent>
-            </Card>
+          <Grid item spacing={2} className={classes.controlSwitch}>
+            <ControlSwitch
+              trigger={powerbox.trigger}
+              updateTrigger={updateTrigger}
+            />
           </Grid>
           <Grid item>
             <Card>

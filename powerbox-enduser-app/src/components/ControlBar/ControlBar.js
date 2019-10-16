@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 
-function ControlBar({ classes }) {
+function ControlBar({ trigger, updateTrigger, classes }) {
   return (
     <div className={classes.root}>
       <Card className={classes.controlBar}>
