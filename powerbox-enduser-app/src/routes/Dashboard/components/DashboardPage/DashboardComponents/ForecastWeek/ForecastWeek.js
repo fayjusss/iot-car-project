@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const TaskProgress = props => {
+const ForecastWeek = props => {
   const { className, ...rest } = props
   const [forecastweekData, setForecastweekData] = useState({})
   const classes = useStyles()
@@ -95,8 +95,8 @@ const TaskProgress = props => {
   )
 }
 
-TaskProgress.propTypes = {
+ForecastWeek.propTypes = {
   className: PropTypes.string
 }
 
-export default TaskProgress
+export default ForecastWeek

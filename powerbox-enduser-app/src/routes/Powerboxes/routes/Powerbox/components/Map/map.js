@@ -18,7 +18,6 @@ function MapContainer({ google, lattitude, longitude, powerbox }) {
   const handleMouseOver = (props, marker, e) => {
     setShowInfoWindow(true)
     setActiveMarker(marker)
-    console.log(powerbox)
   }
   const handleMouseExit = (props, marker, e) => {
     setShowInfoWindow(false)
