@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid'
 import ControlBar from 'components/ControlBar'
 import { Typography, Divider } from '@material-ui/core'
 import Map from '../Map/map'
+import Graph from '../Graph/Graph'
 
 function PowerboxPage({ powerbox, updateTrigger, classes }) {
   return (
@@ -14,7 +15,13 @@ function PowerboxPage({ powerbox, updateTrigger, classes }) {
         <Grid item container direction="column" spacing={2} lg={8} xs={12}>
           <Grid item spacing={2} className={classes.controlSwitch}>
             <Card>
-              <CardContent></CardContent>
+              <CardContent>
+                <Typography type="subtitle1">
+                  Temperature from the device sensor:
+                </Typography>
+                <Divider className={classes.divider} />
+                <Graph></Graph>
+              </CardContent>
             </Card>
           </Grid>
           <Grid item>

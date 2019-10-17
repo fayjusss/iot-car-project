@@ -6,9 +6,9 @@ import TotalPrice from '../DashboardPage/DashboardComponents/TotalPrice'
 import Forecast from './DashboardComponents/Forecast'
 import TaskProgress from './DashboardComponents/ForecastWeek'
 import Table from './DashboardComponents/Table'
-import { Graph } from './DashboardComponents'
+import { Map } from './DashboardComponents'
 
-function DashboardPage({ dashboard, classes }) {
+function DashboardPage({ dashboard, classes, powerbox }) {
   return (
     <div className={classes.root}>
       <Grid container spacing={4}>
@@ -28,7 +28,7 @@ function DashboardPage({ dashboard, classes }) {
           <Table />
         </Grid>
         <Grid item lg={7} md={12} xl={9} xs={12}>
-          <Graph />
+          <Map />
         </Grid>
       </Grid>
     </div>

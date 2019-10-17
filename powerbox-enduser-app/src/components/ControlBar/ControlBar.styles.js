@@ -1,15 +1,12 @@
 export default theme => ({
   root: {},
   controlBar: {
-    height: 600,
-    alignItems: 'center',
-    justifyContent: 'center'
+    height: 600
   },
   divider: {
     margin: theme.spacing(2, 0)
   },
   button: {
-    margin: theme.spacing(1),
     width: '100%'
   },
   input: {
@@ -18,5 +15,9 @@ export default theme => ({
   controlSwitch: {
     display: 'flex',
     justifyContent: 'flex-end'
+  },
+  text: {
+    display: 'flex',
+    margin: theme.spacing(2, 0)
   }
 })

@@ -58,12 +58,20 @@ function ControlBar({ trigger, updateTrigger, classes, powerbox }) {
     <div className={classes.root}>
       <Card className={classes.controlBar}>
         <CardContent>
-          <Typography type="body1">Turn the powerbox on:</Typography>
-          <ControlSwitch
-            trigger={powerbox.trigger}
-            updateTrigger={updateTrigger}
-          />
-          <br></br>
+          <Grid container spacing={3}>
+            <Grid item xs={9}>
+              <Typography type="body1" className="text">
+                Turn the powerbox on:
+              </Typography>
+            </Grid>
+            <Grid item xs={3}>
+              <ControlSwitch
+                trigger={powerbox.trigger}
+                updateTrigger={updateTrigger}
+              />
+            </Grid>
+          </Grid>
+          <Divider className={classes.divider} />
           <Typography type="body1">
             Set the temperature to trigger powerbox:
           </Typography>
@@ -75,9 +83,12 @@ function ControlBar({ trigger, updateTrigger, classes, powerbox }) {
             step={10}
             marks={marks}
           />
+          <br></br>
           <Button variant="outlined" color="primary" className={classes.button}>
             Set temperature trigger
           </Button>
+          <br></br>
+          <br></br>
           <br></br>
           <Typography type="body1">
             Set the date and time to trigger powerbox:
@@ -110,6 +121,7 @@ function ControlBar({ trigger, updateTrigger, classes, powerbox }) {
               />
             </Grid>
           </MuiPickersUtilsProvider>
+          <br></br>
           <Button
             variant="outlined"
             color="secondary"
