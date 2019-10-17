@@ -12,7 +12,11 @@ export default functions.pubsub.topic('bme280').onPublish(message => {
   const state = JSON.parse(payload)
 
   db.doc(`powerboxes/${state.device_id}`)
-    .update({ state: state })
+    .update({
+      time: state.time,
+      temp: state.temp,
+      humd: state.humd
+    })
     .then(writeResult => {
       console.log({ result: 'Message with ID: ' + writeResult.id + ' added.' })
       return
