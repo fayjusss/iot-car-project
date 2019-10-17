@@ -20,7 +20,10 @@ function PowerboxPage({ powerbox, updateTrigger, classes }) {
                   Temperature from the device sensor:
                 </Typography>
                 <Divider className={classes.divider} />
-                <Graph></Graph>
+                <Graph
+                  temp={powerbox.temp}
+                  humd={powerbox.humd}
+                  time={powerbox.time}></Graph>
               </CardContent>
             </Card>
           </Grid>
