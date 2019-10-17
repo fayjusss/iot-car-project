@@ -37,10 +37,10 @@ const Graph = props => {
       <CardHeader
         action={
           <Button size="small" variant="text">
-            Last 7 days <ArrowDropDownIcon />
+            Oulu <ArrowDropDownIcon />
           </Button>
         }
-        title="Latest Sales"
+        title="Device location"
       />
       <Divider />
       <CardContent>

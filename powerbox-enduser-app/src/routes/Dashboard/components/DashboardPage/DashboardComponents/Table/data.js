@@ -3,62 +3,82 @@ import uuid from 'uuid/v1'
 export default [
   {
     id: uuid(),
-    ref: 'CDD1049',
+    ref: '12/10/2019',
     amount: 30.5,
     customer: {
-      name: 'Ekaterina Tankova'
+      name: '34 minutes'
     },
     createdAt: 1555016400000,
     status: 'pending'
   },
   {
     id: uuid(),
-    ref: 'CDD1048',
+    ref: '10/10/2019',
     amount: 25.1,
     customer: {
-      name: 'Cao Yu'
+      name: '14 minutes'
     },
     createdAt: 1555016400000,
     status: 'delivered'
   },
   {
     id: uuid(),
-    ref: 'CDD1047',
+    ref: '23/2/2019',
     amount: 10.99,
     customer: {
-      name: 'Alexa Richardson'
+      name: '1 hour 20 minutes'
     },
     createdAt: 1554930000000,
     status: 'refunded'
   },
   {
     id: uuid(),
-    ref: 'CDD1046',
+    ref: '20/2/2019',
     amount: 96.43,
     customer: {
-      name: 'Anje Keizer'
+      name: '1 hour'
     },
     createdAt: 1554757200000,
     status: 'pending'
   },
   {
     id: uuid(),
-    ref: 'CDD1045',
+    ref: '18/2/2019',
     amount: 32.54,
     customer: {
-      name: 'Clarke Gillebert'
+      name: '37 minutes'
     },
     createdAt: 1554670800000,
     status: 'delivered'
   },
   {
     id: uuid(),
-    ref: 'CDD1044',
+    ref: '17/2/2019',
     amount: 16.76,
     customer: {
-      name: 'Adam Denisov'
+      name: '10 minutes'
     },
     createdAt: 1554670800000,
     status: 'delivered'
+  },
+  {
+    id: uuid(),
+    ref: '23/2/2019',
+    amount: 10.99,
+    customer: {
+      name: '1 hour 20 minutes'
+    },
+    createdAt: 1554930000000,
+    status: 'refunded'
+  },
+  {
+    id: uuid(),
+    ref: '20/2/2019',
+    amount: 96.43,
+    customer: {
+      name: '1 hour'
+    },
+    createdAt: 1554757200000,
+    status: 'pending'
   }
 ]

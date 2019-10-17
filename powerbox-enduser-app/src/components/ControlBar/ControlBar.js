@@ -2,10 +2,31 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Slider from '@material-ui/core/Slider'
 import Card from '@material-ui/core/Card'
+import 'date-fns'
+import ControlSwitch from 'components/ControlSwitch'
+import Grid from '@material-ui/core/Grid'
+import DateFnsUtils from '@date-io/date-fns'
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker
+} from '@material-ui/pickers'
+
 import CardContent from '@material-ui/core/CardContent'
 import { Typography, Divider } from '@material-ui/core'
+import Button from '@material-ui/core/Button'
 
-function ControlBar({ trigger, updateTrigger, classes }) {
+function ControlBar({ trigger, updateTrigger, classes, powerbox }) {
+  //Function for date and time picker
+  const [selectedDate, setSelectedDate] = React.useState(
+    new Date('2014-08-18T21:11:54')
+  )
+
+  const handleDateChange = date => {
+    setSelectedDate(date)
+  }
+
+  //Marks for slider
   const marks = [
     {
       value: 40,
@@ -16,11 +37,11 @@ function ControlBar({ trigger, updateTrigger, classes }) {
       label: '-10°C'
     },
     {
-      value: 85,
+      value: 80,
       label: '-5°C'
     },
     {
-      value: 100,
+      value: 95,
       label: '0°C'
     }
   ]
@@ -32,23 +53,69 @@ function ControlBar({ trigger, updateTrigger, classes }) {
   function valueLabelFormat(value) {
     return marks.findIndex(mark => mark.value === value) + 1
   }
+
   return (
     <div className={classes.root}>
       <Card className={classes.controlBar}>
         <CardContent>
+          <Typography type="body1">Turn the powerbox on:</Typography>
+          <ControlSwitch
+            trigger={powerbox.trigger}
+            updateTrigger={updateTrigger}
+          />
+          <br></br>
           <Typography type="body1">
             Set the temperature to trigger powerbox:
           </Typography>
           <Divider className={classes.divider} />
           <Slider
-            defaultValue={40}
-            valueLabelFormat={valueLabelFormat}
+            defaultValue={-20}
             getAriaValueText={valuetext}
-            aria-labelledby="discrete-slider-restrict"
-            step={null}
-            valueLabelDisplay="auto"
+            aria-labelledby="discrete-slider-always"
+            step={10}
             marks={marks}
           />
+          <Button variant="outlined" color="primary" className={classes.button}>
+            Set temperature trigger
+          </Button>
+          <br></br>
+          <Typography type="body1">
+            Set the date and time to trigger powerbox:
+          </Typography>
+          <Divider className={classes.divider} />
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <Grid container justify="space-around">
+              <KeyboardDatePicker
+                disableToolbar
+                variant="inline"
+                format="MM/dd/yyyy"
+                margin="normal"
+                id="date-picker-inline"
+                label="Choose date"
+                value={selectedDate}
+                onChange={handleDateChange}
+                KeyboardButtonProps={{
+                  'aria-label': 'change date'
+                }}
+              />
+              <KeyboardTimePicker
+                margin="normal"
+                id="time-picker"
+                label="Choose time"
+                value={selectedDate}
+                onChange={handleDateChange}
+                KeyboardButtonProps={{
+                  'aria-label': 'change time'
+                }}
+              />
+            </Grid>
+          </MuiPickersUtilsProvider>
+          <Button
+            variant="outlined"
+            color="secondary"
+            className={classes.button}>
+            Set time and date trigger
+          </Button>
         </CardContent>
       </Card>
     </div>

@@ -17,15 +17,16 @@ const Footer = props => {
 
   return (
     <div {...rest} className={clsx(classes.root, className)}>
-      <Typography variant="caption">
+      <Typography variant="body2">
         &copy;{' '}
-        <Link component="a" href="oamk.fi" target="_blank">
+        <Link component="a" href="https://oamk.fi/" target="_blank">
           OAMK
         </Link>
         . 2019
       </Typography>
       <Typography variant="caption">
-        Created as a study project for OAMK.FI course on Internet of Things
+        Created by three developers, students of Oulu University of Applied
+        Sciences.
       </Typography>
     </div>
   )

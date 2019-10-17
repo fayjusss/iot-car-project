@@ -55,7 +55,7 @@ const TableComponent = props => {
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
       <CardHeader title="Your powerbox use history">
-        <Typography type="subtitle1">Your powerbox use history:</Typography>
+        <Typography type="subtitle1">Powerbox use history:</Typography>
       </CardHeader>
       <Divider />
       <CardContent className={classes.content}>
@@ -63,8 +63,8 @@ const TableComponent = props => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Order Ref</TableCell>
-                <TableCell>Customer</TableCell>
+                <TableCell>Date</TableCell>
+                <TableCell>Time</TableCell>
                 <TableCell sortDirection="desc">
                   <Tooltip enterDelay={300} title="Sort">
                     <TableSortLabel active direction="desc">
@@ -95,7 +95,7 @@ const TableComponent = props => {
       <Divider />
       <CardActions className={classes.actions}>
         <Button color="primary" size="small" variant="text">
-          View all <ArrowRightIcon />
+          Earlier <ArrowRightIcon />
         </Button>
       </CardActions>
     </Card>

@@ -4,6 +4,7 @@ import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react'
 import { Typography } from '@material-ui/core'
 
 const mapStyles = {
+  responsive: true,
   position: 'relative',
   width: '600px',
   height: '200px'
