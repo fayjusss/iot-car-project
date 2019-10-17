@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import Slider from '@material-ui/core/Slider'
 import Card from '@material-ui/core/Card'
@@ -16,7 +16,15 @@ import CardContent from '@material-ui/core/CardContent'
 import { Typography, Divider } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
 
-function ControlBar({ trigger, updateTrigger, classes, powerbox }) {
+function ControlBar({
+  trigger,
+  updateTrigger,
+  classes,
+  powerbox,
+  triggeringTemp,
+  updateTriggeringTemp,
+  triggeringTime
+}) {
   //Function for date and time picker
   const [selectedDate, setSelectedDate] = React.useState(
     new Date('2014-08-18T21:11:54')
@@ -24,6 +32,13 @@ function ControlBar({ trigger, updateTrigger, classes, powerbox }) {
 
   const handleDateChange = date => {
     setSelectedDate(date)
+  }
+
+  const [state, setState] = useState({ checked: triggeringTemp })
+
+  const handleChange = () => event => {
+    setState({ ...state, checked: event.target.checked })
+    updateTriggeringTemp(state.checked)
   }
 
   //Marks for slider
@@ -84,7 +99,11 @@ function ControlBar({ trigger, updateTrigger, classes, powerbox }) {
             marks={marks}
           />
           <br></br>
-          <Button variant="outlined" color="primary" className={classes.button}>
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={handleChange()}
+            className={classes.button}>
             Set temperature trigger
           </Button>
           <br></br>

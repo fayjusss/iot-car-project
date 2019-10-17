@@ -3,27 +3,20 @@ import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/styles'
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react'
 import { Typography } from '@material-ui/core'
-import {
-  Card,
-  CardActions,
-  CardHeader,
-  CardContent,
-  Button,
-  Divider
-} from '@material-ui/core'
+import { Card, CardHeader, Divider } from '@material-ui/core'
 
 const mapStyles = {
   responsive: true,
   position: 'relative',
   width: '600px',
-  height: '700px'
+  height: '600px'
 }
 
 const containerStyle = { position: 'relative' }
 
 const useStyles = makeStyles(theme => ({
   root: {
-    height: '1200px'
+    height: '600px'
   }
 }))
 
@@ -35,6 +28,7 @@ function MapMain({ google }) {
     setShowInfoWindow(true)
     setActiveMarker(marker)
   }
+  // eslint-disable-next-line no-unused-vars
   const handleMouseExit = (props, marker, e) => {
     setShowInfoWindow(false)
     setActiveMarker(false)
@@ -43,7 +37,7 @@ function MapMain({ google }) {
 
   return (
     <div>
-      <Card className="classes.root">
+      <Card className={classes.root}>
         <CardHeader title="Device locations:">
           <Typography type="subtitle1">Powerbox device locations:s</Typography>
         </CardHeader>
@@ -53,7 +47,7 @@ function MapMain({ google }) {
           containerStyle={containerStyle}
           zoom={12}
           style={mapStyles}
-          initialCenter={{ lat: 64.999458, lng: 25.51055 }}
+          initialCenter={{ lat: 65.017732, lng: 25.481051 }}
           defaultOptions={{
             // these following 7 options turn certain controls off see link below
             streetViewControl: false,

@@ -20,6 +20,7 @@ function MapContainer({ google, lattitude, longitude, powerbox }) {
     setShowInfoWindow(true)
     setActiveMarker(marker)
   }
+  // eslint-disable-next-line no-unused-vars
   const handleMouseExit = (props, marker, e) => {
     setShowInfoWindow(false)
     setActiveMarker(false)

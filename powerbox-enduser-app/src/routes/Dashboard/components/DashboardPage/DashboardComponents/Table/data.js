@@ -80,5 +80,15 @@ export default [
     },
     createdAt: 1554757200000,
     status: 'pending'
+  },
+  {
+    id: uuid(),
+    ref: '20/2/2019',
+    amount: 96.43,
+    customer: {
+      name: '1 hour'
+    },
+    createdAt: 1554757200000,
+    status: 'pending'
   }
 ]
