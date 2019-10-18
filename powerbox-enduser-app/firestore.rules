@@ -19,15 +19,10 @@ service cloud.firestore {
       allow write: if false; // only written to by indexUser cloud function
     }
 
-    // Projects
-    match /projects/{projectId} {
-      // Only projects you own can be viewed
-      allow create: if isOwner(request.resource);
-      allow read, update: if isOwner(resource);
-      // Rules apply to all child collections
-      match /{allChildren=**} {
-        allow read, write: if isOwner(get(/databases/$(database)/documents/projects/$(projectId)));
-      }
+    // Powerboxes
+    match /powerboxes/{powerboxId} {
+      allow read;
+      allow write;
     }
   }
 }
