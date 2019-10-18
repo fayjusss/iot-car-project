@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, useEffect } from 'react'
 import {
   LineChart,
   Line,
@@ -11,45 +11,45 @@ import {
 
 const data = [
   {
-    name: 'Page A',
-    uv: 4000,
-    pv: 2400,
+    name: '5 am',
+    Temperature: 18.72,
+    Humidity: 40.57,
     amt: 2400
   },
   {
-    name: 'Page B',
-    uv: 3000,
-    pv: 1398,
+    name: '6 am',
+    Temperature: 19.6,
+    Humidity: 43.2,
     amt: 2210
   },
   {
-    name: 'Page C',
-    uv: 2000,
-    pv: 9800,
+    name: '7 am',
+    Temperature: 17.34,
+    Humidity: 48.3,
     amt: 2290
   },
   {
-    name: 'Page D',
-    uv: 2780,
-    pv: 3908,
+    name: '8 am',
+    Temperature: 16.7,
+    Humidity: 36.7,
     amt: 2000
   },
   {
-    name: 'Page E',
-    uv: 1890,
-    pv: 4800,
+    name: '9 am',
+    Temperature: 20.5,
+    Humidity: 39.4,
     amt: 2181
   },
   {
-    name: 'Page F',
-    uv: 2390,
-    pv: 3800,
+    name: '10 am',
+    Temperature: 24.5,
+    Humidity: 39.2,
     amt: 2500
   },
   {
-    name: 'Page G',
-    uv: 3490,
-    pv: 4300,
+    name: '11 am',
+    Temperature: 27.4,
+    Humidity: 38,
     amt: 2100
   }
 ]
@@ -76,11 +76,11 @@ export default class Example extends PureComponent {
         <Legend />
         <Line
           type="monotone"
-          dataKey="pv"
+          dataKey="Humidity"
           stroke="#003366"
           activeDot={{ r: 8 }}
         />
-        <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+        <Line type="monotone" dataKey="Temperature" stroke="#82ca9d" />
       </LineChart>
     )
   }
