@@ -20,7 +20,7 @@ export default compose(
   // Set component display name (more clear in dev/error tools)
   setDisplayName('EnhancedPowerboxPage'),
   // Redirect to /login if user is not logged in
-  UserIsAuthenticated,
+  // UserIsAuthenticated,
   // Add props.match
   withRouter,
   // Set proptypes of props used in HOCs

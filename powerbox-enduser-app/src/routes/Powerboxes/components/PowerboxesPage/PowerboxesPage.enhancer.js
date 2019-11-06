@@ -14,7 +14,7 @@ export default compose(
   // Set component display name (more clear in dev/error tools)
   setDisplayName('EnhancedPowerboxesPage'),
   // redirect to /login if user is not logged in
-  UserIsAuthenticated,
+  // UserIsAuthenticated,
   // create listener for powerboxes, results go into redux
   firestoreConnect([{ collection: 'powerboxes' }]),
   // map redux state to props

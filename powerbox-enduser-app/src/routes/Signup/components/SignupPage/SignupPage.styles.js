@@ -11,11 +11,11 @@ export default theme => ({
     marginTop: theme.spacing(10),
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.primary.main
   },
   panel: {
     ...theme.flexColumnCenter,

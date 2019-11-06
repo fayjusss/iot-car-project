@@ -6,7 +6,7 @@ import { withStyles } from '@material-ui/core/styles'
 import styles from './DashboardPage.styles'
 
 export default compose(
-  UserIsAuthenticated,
+  // UserIsAuthenticated,
   // create listener for dashboard, results go into redux
   firestoreConnect([{ collection: 'dashboard' }]),
   // map redux state to props
