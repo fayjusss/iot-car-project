@@ -32,11 +32,10 @@ function CoreLayout({ authExists, children, classes }) {
           [classes.shiftContent]: isDesktop && authExists
         })}>
         <Navbar onSidebarOpen={handleSidebarOpen} />
-        {authExists && (
-          <Sidebar
-            onClose={handleSidebarClose}
-            open={shouldOpenSidebar}
-            variant={isDesktop ? 'persistent' : 'temporary'}></Sidebar>
+        <Sidebar
+          onClose={handleSidebarClose}
+          open={shouldOpenSidebar}
+          variant={isDesktop ? 'persistent' : 'temporary'}></Sidebar>
         )}
         <div className={classes.children}>{children}</div>
         <Footer></Footer>
